@@ -1,8 +1,9 @@
+import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
+import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:flutter/material.dart';
 
-class Login  extends StatelessWidget {
-
-    @override
+class Login extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -28,7 +29,8 @@ class Login  extends StatelessWidget {
                   hintText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
+                    borderSide: BorderSide(
+                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ),
               ),
@@ -40,43 +42,64 @@ class Login  extends StatelessWidget {
                   hintText: 'Contraseña',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
+                    borderSide: BorderSide(
+                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ),
                 obscureText: true,
               ),
-             
               SizedBox(height: 300),
               ElevatedButton(
-                child: Text('Entrar', style: TextStyle(color: Color(0xFFFFA07A))),
+                child:
+                    Text('Entrar', style: TextStyle(color: Color(0xFFFFA07A))),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
-                    
                   ),
                 ),
                 onPressed: () {
                   // Handle registration logic
                 },
               ),
-                SizedBox(height: 24),
-                Text(overflow: TextOverflow.ellipsis, 'Todavia no tienes cuenta?'),
-                SizedBox(height: 12),
+              SizedBox(height: 24),
+              Text(
+                  overflow: TextOverflow.ellipsis, 'Todavia no tienes cuenta?'),
+              SizedBox(height: 12),
               ElevatedButton(
-                child: Text('Registrarse', style: TextStyle(color: Color(0xFFFFA07A))),
+                child: Text('Registrarse',
+                    style: TextStyle(color: Color(0xFFFFA07A))),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
-                    
+                  ),
+                ), // cod que nos enviara a la interface de registro
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Registro())); // registro, nombre de interface de registro :/
+                },
+              ), // este boton para prueba que llega a la pantalla de crear una nota
+              ElevatedButton(
+                child: Text('crear nota',
+                    style: TextStyle(color: Color(0xFFFFA07A))),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 onPressed: () {
-                  // Handle registration logic
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ListaNotasScreen())); // Handle registration logic
                 },
-              ),
-            
+              ), //fin del boton de prueba
             ],
           ),
         ),
@@ -84,4 +107,3 @@ class Login  extends StatelessWidget {
     );
   }
 }
-
