@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'paginas/login.dart';
+
+import 'paginas/menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: Menu(),
     );
   }
 }
