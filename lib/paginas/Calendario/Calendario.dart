@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
-import 'package:fit_plan_proyecto/paginas/login.dart';
+import 'package:fit_plan_proyecto/paginas/menu.dart';
+
 
 class Calendario extends StatefulWidget {
   @override
@@ -15,9 +16,9 @@ class _CalendarioState extends State<Calendario> {
   final List<Widget> _screens = [
     CalendarWithNotes(),
     CalendarWithNotes(),
-    Login(),
+    Menu(),
     Cronometro(),
-    CalendarWithNotes(),
+    Menu(),
   ];
 
   void _onItemTapped(int index) {
@@ -27,18 +28,17 @@ class _CalendarioState extends State<Calendario> {
 
     switch (index) {
       case 0:
-        ;
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Login()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
         break;
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Login()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
         break;
       case 3:
@@ -50,7 +50,7 @@ class _CalendarioState extends State<Calendario> {
       case 4:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Login()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
         break;
     }
@@ -127,7 +127,7 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              Login()));
+                              Menu()));
         },
         ),
         backgroundColor: Color(0xFFFFA07A), // Color de la barra superior

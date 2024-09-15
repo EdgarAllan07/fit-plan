@@ -1,4 +1,4 @@
-import 'package:fit_plan_proyecto/paginas/login.dart';
+import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
@@ -18,7 +18,7 @@ class _CronometroPageState extends State<Cronometro> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CalendarWithNotes()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
         break;
       case 1:
@@ -26,16 +26,19 @@ class _CronometroPageState extends State<Cronometro> {
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Login()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
         break;
       case 3:
-      ;
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Calendario()),
+        );
         break;
       case 4:
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Login()),
+          MaterialPageRoute(builder: (context) => Menu()),
         );
         break;
     }
@@ -116,7 +119,7 @@ class _CronometroPageState extends State<Cronometro> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              Login()));
+                              Menu()));
         },
         ),
         backgroundColor: Color(0xFFFFA07A), // Color de la barra superior
@@ -228,7 +231,7 @@ class _CronometroPageState extends State<Cronometro> {
           ),
           GButton(icon: Icons.restaurant, text: 'Comidas', gap: 8),
           GButton(icon: Icons.home, text: 'Inicio', gap: 8),
-          GButton(icon: Icons.calculate, text: 'Calcular', gap: 8),
+          GButton(icon: Icons.calendar_month, text: 'Horarios', gap: 8),
           GButton(icon: Icons.menu, text: 'Menu', gap: 8),
         ],
         onTabChange: _onItemTapped, // Usa la función para manejar el cambio de tab
