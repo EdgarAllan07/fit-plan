@@ -1,6 +1,8 @@
 import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
 import 'package:fit_plan_proyecto/paginas/registro.dart';
+import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
+import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -99,7 +101,41 @@ class Login extends StatelessWidget {
                           builder: (context) =>
                               ListaNotasScreen())); // Handle registration logic
                 },
-              ), //fin del boton de prueba
+              ),
+              ElevatedButton(
+                child: Text('Calendario',
+                    style: TextStyle(color: Color(0xFFFFA07A))),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Calendario())); // Handle registration logic
+                },
+              ), 
+              ElevatedButton(
+                child: Text('Cronometro',
+                    style: TextStyle(color: Color(0xFFFFA07A))),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Cronometro())); // Handle registration logic
+                },
+              )//fin del boton de prueba
             ],
           ),
         ),
