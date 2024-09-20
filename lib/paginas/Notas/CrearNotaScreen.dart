@@ -14,7 +14,7 @@ class CrearNotaScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Crear Nueva Nota'),
-        backgroundColor: const Color.fromARGB(255, 213, 123, 12),
+      backgroundColor: Color(0xffffa07a),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
