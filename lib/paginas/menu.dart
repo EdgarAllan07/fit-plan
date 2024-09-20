@@ -3,6 +3,8 @@ import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
+import 'Configuraciones/configuracionMenu.dart';
+import 'calcularPeso/resultadoPeso.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -47,12 +49,13 @@ class Menu extends StatelessWidget {
   Widget _buildMenuGrid(BuildContext context) {
     final menuItems = [
       {'icon': Icons.lightbulb_outline, 'label': 'Tips', 'page': null}, // Añadir la página correspondiente
-      {'icon': Icons.chat_bubble_outline, 'label': 'Chat de entrenamiento...', 'page': null}, // Añadir la página correspondiente
+      {'icon': Icons.scale, 'label': 'Peso', 'page': ResultadoPeso()}, // Añadir la página correspondiente
       {'icon': Icons.description_outlined, 'label': 'Plan de entrenamiento...', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.timer, 'label': 'Cronometro', 'page': Cronometro()},
       {'icon': Icons.restaurant_menu, 'label': 'Comidas', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.calendar_today, 'label': 'Horarios', 'page': Calendario()},
-      {'icon': Icons.settings, 'label': 'Configuraciones', 'page': null}, // Añadir la página correspondiente
+      {'icon': Icons.settings, 'label': 'Configuraciones', 'page': ConfiguracionMenu()},
+       {'icon': Icons.note, 'label': 'Notas', 'page': ListaNotasScreen()} // Añadir la página correspondiente
     ];
 
     return GridView.builder(
