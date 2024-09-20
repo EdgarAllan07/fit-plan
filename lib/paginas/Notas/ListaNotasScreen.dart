@@ -68,7 +68,7 @@ class _ListaNotasScreenState extends State<ListaNotasScreen> {
         },
         child: Icon(Icons.add),
         tooltip: 'Agregar Nota',
-        backgroundColor: const Color.fromARGB(255, 234, 124, 14),
+     backgroundColor: Color(0xffffa07a),
       ),
     );
   }
