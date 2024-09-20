@@ -15,7 +15,7 @@ class _ListaNotasScreenState extends State<ListaNotasScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mis Notas'),
-        backgroundColor: const Color.fromARGB(255, 234, 124, 14),
+        backgroundColor: Color(0xffffa07a),
       ),
       body: ListView.builder(
         itemCount: notas.length,
