@@ -6,6 +6,8 @@ import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'Configuraciones/configuracionMenu.dart';
 import 'calcularPeso/resultadoPeso.dart';
 
+//Prueba comentario
+
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
