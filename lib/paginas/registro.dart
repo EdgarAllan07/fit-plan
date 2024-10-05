@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
 
 class Registro  extends StatelessWidget {
 
@@ -69,7 +70,11 @@ class Registro  extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // Handle registration logic
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Login()));
                 },
               ),
             ],

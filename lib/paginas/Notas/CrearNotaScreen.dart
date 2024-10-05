@@ -13,7 +13,7 @@ class CrearNotaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Crear Nueva Nota'),
+        title: Text('Crear Nueva Nota',style: TextStyle(color: Colors.white)),
       backgroundColor: Color(0xffffa07a),
       ),
       body: Padding(
