@@ -22,6 +22,7 @@ class Registro  extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 20),
+              //Caja de texto correo
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -34,6 +35,7 @@ class Registro  extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
+              //Caja de texto contraseña
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -47,6 +49,7 @@ class Registro  extends StatelessWidget {
                 obscureText: true,
               ),
               SizedBox(height: 16),
+              //Caja de texto repetir contraseña
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -54,16 +57,17 @@ class Registro  extends StatelessWidget {
                   hintText: 'Repite la contraseña',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide:  BorderSide(width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
+                    borderSide:  const BorderSide(width: 16.0, color:  Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ),
                 obscureText: true,
               ),
               SizedBox(height:300),
+              //Boton registrarse
               ElevatedButton(
                 child: Text('Registrarse', style: TextStyle(color: Color(0xFFFFA07A))),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                     
