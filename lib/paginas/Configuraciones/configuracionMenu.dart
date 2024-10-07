@@ -5,10 +5,10 @@ class ConfiguracionMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configuraciones'),
+        title: Text('Configuraciones',style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xFFFFA07A),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),

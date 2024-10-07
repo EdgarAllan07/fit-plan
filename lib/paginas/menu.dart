@@ -1,5 +1,5 @@
 import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
-import 'package:fit_plan_proyecto/paginas/registro.dart';
+import 'package:fit_plan_proyecto/paginas/login.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
@@ -15,10 +15,42 @@ class Menu extends StatelessWidget {
       backgroundColor: Color(0xFFFFA07A), // Light Salmon color
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
+        elevation: 100.0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: (){
+            showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 400,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text('Quieres regresar al inicio de sesion?'),
+                      ElevatedButton(
+                        child: const Text('Si'),
+                        onPressed: () {
+                           Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Login()));
+                        },
+                      ),
+                        ElevatedButton(
+                        child: const Text('No'),
+                        onPressed: () => Navigator.pop(context),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+          },
         ),
       ),
       body: Column(
