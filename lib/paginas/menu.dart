@@ -1,26 +1,28 @@
-import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
-import 'package:fit_plan_proyecto/paginas/registro.dart';
+//import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
+//import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 
 class Menu extends StatelessWidget {
+  const Menu({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFA07A), // Light Salmon color
+      backgroundColor: const Color(0xFFFFA07A), // Light Salmon color
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: Column(
         children: [
           _buildUserProfile(),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(child: _buildMenuGrid(context)),
         ],
       ),
@@ -28,7 +30,7 @@ class Menu extends StatelessWidget {
   }
 
   Widget _buildUserProfile() {
-    return ListTile(
+    return const ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.white,
         child: Icon(Icons.person, color: Color(0xFFFFA07A)),
@@ -49,15 +51,15 @@ class Menu extends StatelessWidget {
       {'icon': Icons.lightbulb_outline, 'label': 'Tips', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.chat_bubble_outline, 'label': 'Chat de entrenamiento...', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.description_outlined, 'label': 'Plan de entrenamiento...', 'page': null}, // Añadir la página correspondiente
-      {'icon': Icons.timer, 'label': 'Cronometro', 'page': Cronometro()},
+      {'icon': Icons.timer, 'label': 'Cronometro', 'page': const Cronometro()},
       {'icon': Icons.restaurant_menu, 'label': 'Comidas', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.calendar_today, 'label': 'Horarios', 'page': Calendario()},
       {'icon': Icons.settings, 'label': 'Configuraciones', 'page': null}, // Añadir la página correspondiente
     ];
 
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 1,
         crossAxisSpacing: 16,
@@ -84,18 +86,18 @@ class Menu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, size: 30, color: Color(0xFFFFA07A)),
+            child: Icon(icon, size: 30, color: const Color(0xFFFFA07A)),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             label,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 12),
+            style: const TextStyle(color: Colors.white, fontSize: 12),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
