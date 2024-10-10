@@ -13,8 +13,8 @@ class CrearNotaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Crear Nueva Nota'),
-        backgroundColor: const Color.fromARGB(255, 213, 123, 12),
+        title: Text('Crear Nueva Nota',style: TextStyle(color: Colors.white)),
+      backgroundColor: Color(0xffffa07a),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -54,7 +54,7 @@ class CrearNotaScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color.fromARGB(255, 242, 239, 237),
-                backgroundColor: const Color.fromARGB(255, 213, 123, 12),
+                backgroundColor: Color(0xffffa07a),
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),
               child: Text('Guardar Nota'),

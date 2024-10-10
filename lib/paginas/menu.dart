@@ -1,8 +1,12 @@
-//import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
-//import 'package:fit_plan_proyecto/paginas/registro.dart';
+import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
+import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
+import 'Configuraciones/configuracionMenu.dart';
+import 'calcularPeso/resultadoPeso.dart';
+
+//Prueba comentario
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -13,9 +17,9 @@ class Menu extends StatelessWidget {
       backgroundColor: const Color(0xFFFFA07A), // Light Salmon color
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
+        elevation: 100.0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -49,12 +53,13 @@ class Menu extends StatelessWidget {
   Widget _buildMenuGrid(BuildContext context) {
     final menuItems = [
       {'icon': Icons.lightbulb_outline, 'label': 'Tips', 'page': null}, // Añadir la página correspondiente
-      {'icon': Icons.chat_bubble_outline, 'label': 'Chat de entrenamiento...', 'page': null}, // Añadir la página correspondiente
+      {'icon': Icons.scale, 'label': 'Peso', 'page': ResultadoPeso()}, // Añadir la página correspondiente
       {'icon': Icons.description_outlined, 'label': 'Plan de entrenamiento...', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.timer, 'label': 'Cronometro', 'page': const Cronometro()},
       {'icon': Icons.restaurant_menu, 'label': 'Comidas', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.calendar_today, 'label': 'Horarios', 'page': Calendario()},
-      {'icon': Icons.settings, 'label': 'Configuraciones', 'page': null}, // Añadir la página correspondiente
+      {'icon': Icons.settings, 'label': 'Configuraciones', 'page': ConfiguracionMenu()},
+       {'icon': Icons.note, 'label': 'Notas', 'page': ListaNotasScreen()} // Añadir la página correspondiente
     ];
 
     return GridView.builder(

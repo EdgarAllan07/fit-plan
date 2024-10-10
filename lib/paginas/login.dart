@@ -1,8 +1,6 @@
-import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
 import 'package:fit_plan_proyecto/paginas/registro.dart';
-import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
-import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
+import 'package:fit_plan_proyecto/paginas/menu.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -53,7 +51,7 @@ class Login extends StatelessWidget {
               SizedBox(height: 300),
               ElevatedButton(
                 child:
-                    Text('Entrar', style: TextStyle(color: Color(0xFFFFA07A))),
+                    Text('Ingresar', style: TextStyle(color: Color(0xFFFFA07A))),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
@@ -62,6 +60,11 @@ class Login extends StatelessWidget {
                 ),
                 onPressed: () {
                   // Handle registration logic
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Menu()));
                 },
               ),
               SizedBox(height: 24),
@@ -85,57 +88,8 @@ class Login extends StatelessWidget {
                               Registro())); // registro, nombre de interface de registro :/
                 },
               ), // este boton para prueba que llega a la pantalla de crear una nota
-              ElevatedButton(
-                child: Text('crear nota',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              ListaNotasScreen())); // Handle registration logic
-                },
-              ),
-              ElevatedButton(
-                child: Text('Calendario',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Calendario())); // Handle registration logic
-                },
-              ), 
-              ElevatedButton(
-                child: Text('Cronometro',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Cronometro())); // Handle registration logic
-                },
-              )//fin del boton de prueba
+             
+          //fin del boton de prueba
             ],
           ),
         ),
