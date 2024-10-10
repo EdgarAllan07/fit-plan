@@ -5,13 +5,15 @@ import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Cronometro extends StatefulWidget {
+  const Cronometro({super.key});
+
   @override
   _CronometroPageState createState() => _CronometroPageState();
 }
 
 
 class _CronometroPageState extends State<Cronometro> {
-  int _selectedIndex = 0;
+//  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     switch (index) {
@@ -58,7 +60,7 @@ class _CronometroPageState extends State<Cronometro> {
 
   void _startStopwatch() {
     setState(() {
-      _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+      _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
         setState(() {
           tiempo = _formatoTiempo(_stopwatch.elapsed);
         });
@@ -104,7 +106,7 @@ class _CronometroPageState extends State<Cronometro> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Cronometro',
           style: TextStyle(
             color: Colors.white,
@@ -113,7 +115,7 @@ class _CronometroPageState extends State<Cronometro> {
           ),
         ),
         leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.white),
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: (){
           Navigator.push(
                       context,
@@ -122,7 +124,7 @@ class _CronometroPageState extends State<Cronometro> {
                               Menu()));
         },
         ),
-        backgroundColor: Color(0xFFFFA07A), // Color de la barra superior
+        backgroundColor:const Color(0xFFFFA07A), // Color de la barra superior
       ),
       body: 
       Center(
@@ -139,13 +141,13 @@ class _CronometroPageState extends State<Cronometro> {
                   height: 400,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Color(0xFFFFA07A), width: 11),
+                    border: Border.all(color:const Color(0xFFFFA07A), width: 11),
                   ),
                 ),
                 // Texto del cronómetro
                 Text(
                   tiempo,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
                   ),
@@ -161,8 +163,8 @@ class _CronometroPageState extends State<Cronometro> {
                   onPressed:
                       _stopwatch.isRunning ? _stopStopwatch : _startStopwatch,
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(150,50),
-                    padding: EdgeInsets.all(20),
+                    minimumSize: const Size(150,50),
+                    padding: const EdgeInsets.all(20),
                     backgroundColor: Colors.lightGreen, // Fondo del icono
                   ),
                   child: Icon(
@@ -171,16 +173,16 @@ class _CronometroPageState extends State<Cronometro> {
                     size: 35,
                   ),
                 ),
-                SizedBox(width: 10),
+              const SizedBox(width: 10),
                 // Icono de Reiniciar
                 ElevatedButton(
                   onPressed: _resetStopwatch,
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(150, 50),
-                    padding: EdgeInsets.all(20),
+                    minimumSize: const Size(150, 50),
+                    padding: const EdgeInsets.all(20),
                     backgroundColor: Colors.redAccent, // Fondo del icono
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.refresh,
                     color: Colors.white,
                     size: 35,
@@ -188,29 +190,29 @@ class _CronometroPageState extends State<Cronometro> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             // Icono de marcar vuelta
             ElevatedButton(
               onPressed: _marcarVuelta,
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(150, 50),
-                padding: EdgeInsets.all(20),
+                minimumSize: const Size(150, 50),
+                padding: const EdgeInsets.all(20),
                 backgroundColor: Colors.lightBlue, // Fondo del icono
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.flag,
                 color: Colors.white,
                 size: 35,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: vueltas.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text('   ${index + 1}:  ${vueltas[index]}',
-                        style: TextStyle(fontSize: 30)),
+                        style: const TextStyle(fontSize: 30)),
                   );
                 },
               ),
@@ -221,8 +223,8 @@ class _CronometroPageState extends State<Cronometro> {
       bottomNavigationBar: GNav(
         color: Colors.white,
         activeColor: Colors.white,
-        backgroundColor: Color(0xFFFFA07A),
-        padding: EdgeInsets.all(25),
+        backgroundColor: const Color(0xFFFFA07A),
+        padding: const EdgeInsets.all(25),
         tabs: const [
           GButton(
             icon: Icons.run_circle,
