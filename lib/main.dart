@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'paginas/login.dart';
 import 'paginas/menu.dart';
 
-Future<void> main() async {
-  //cadena de conexion a flutter 
-  //nuevas librerias 
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
+  void main() {
+    //cadena de conexion a flutter 
+    //nuevas librerias 
+/**    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+  ); */
   runApp(MyApp());
 }
 
