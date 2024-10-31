@@ -6,6 +6,8 @@ import 'package:fit_plan_proyecto/paginas/menu.dart';
 
 
 class Calendario extends StatefulWidget {
+  const Calendario({super.key});
+
   @override
   _CalendarioState createState() => _CalendarioState();
 }
@@ -65,8 +67,8 @@ class _CalendarioState extends State<Calendario> {
       bottomNavigationBar: GNav(
         color: Colors.white,
         activeColor: Colors.white,
-        backgroundColor: Color(0xFFFFA07A),
-        padding: EdgeInsets.all(25),
+        backgroundColor: const Color(0xFFFFA07A),
+        padding: const EdgeInsets.all(25),
         tabs: const [
           GButton(
             icon: Icons.run_circle,
@@ -96,12 +98,14 @@ class _CalendarioState extends State<Calendario> {
 }
 
 class CalendarWithNotes extends StatefulWidget {
+  const CalendarWithNotes({super.key});
+
   @override
   _CalendarWithNotesState createState() => _CalendarWithNotesState();
 }
 
 class _CalendarWithNotesState extends State<CalendarWithNotes> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  final CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
@@ -119,9 +123,9 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Horarios', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
+        title: const Text('Horarios', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
         leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.white),
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: (){
           Navigator.push(
                       context,
@@ -130,7 +134,7 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
                               Menu()));
         },
         ),
-        backgroundColor: Color(0xFFFFA07A), // Color de la barra superior
+        backgroundColor: const Color(0xFFFFA07A), // Color de la barra superior
       ),
       body: Column(
         children: [
@@ -149,13 +153,13 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
               });
             },
             eventLoader: _getEventsForDay,
-            headerStyle: HeaderStyle(
+            headerStyle: const HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
             ),
             daysOfWeekStyle: DaysOfWeekStyle(
-              weekendStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-              weekdayStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              weekendStyle: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              weekdayStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               dowTextFormatter: (date, locale) {
                 return date.weekday == 7 ? 'D' : date.weekday == 6 ? 'S' : 'LMMJVS'[date.weekday - 1].toUpperCase();
               },
@@ -165,14 +169,14 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
                 if (_events[day] != null && _events[day]!.isNotEmpty) {
                   return Container(
                     margin: const EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.blueAccent,
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                       child: Text(
                         '${day.day} ',
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                   );
@@ -182,14 +186,14 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
               selectedBuilder: (context, day, focusedDay) {
                 return Container(
                   margin: const EdgeInsets.all(4.0),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFFFFA07A),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
                     child: Text(
                       '${day.day}',
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 );
@@ -213,14 +217,14 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(_getEventsForDay(_selectedDay!)[index], 
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold
                         ),),
                       );
                     },
                   )
-                : Center(child: Text('Selecciona una fecha para ver notas')),
+                : const Center(child: Text('Selecciona una fecha para ver notas')),
           ),
         ],
       ),
@@ -230,9 +234,9 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
             _showAddNoteDialog(_selectedDay!);
           }
         },
-        backgroundColor: Color(0xFFFFA07A),
-        child: Icon(Icons.add, color: Colors.white),
+        backgroundColor: const Color(0xFFFFA07A),
         tooltip: 'Agregar nota',
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }
@@ -244,19 +248,19 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Agregar nota'),
+          title: const Text('Agregar nota'),
           content: TextField(
             onChanged: (value) {
               newNote = value;
             },
-            decoration: InputDecoration(hintText: 'Escribe tu nota'),
+            decoration: const InputDecoration(hintText: 'Escribe tu nota'),
           ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancelar'),
+              child: const Text('Cancelar'),
             ),
             TextButton(
               onPressed: () {
@@ -269,7 +273,7 @@ class _CalendarWithNotesState extends State<CalendarWithNotes> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text('Agregar', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: const Text('Agregar', style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ],
         );

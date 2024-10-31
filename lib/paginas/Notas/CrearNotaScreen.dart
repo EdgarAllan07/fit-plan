@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CrearNotaScreen extends StatelessWidget {
   final Function(Nota) onSave;
 
-  CrearNotaScreen({required this.onSave});
+  CrearNotaScreen({super.key, required this.onSave});
 
   final TextEditingController _tituloController = TextEditingController();
   final TextEditingController _contenidoController = TextEditingController();
@@ -13,8 +13,8 @@ class CrearNotaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Crear Nueva Nota'),
-      backgroundColor: Color(0xffffa07a),
+        title: const Text('Crear Nueva Nota'),
+      backgroundColor: const Color(0xffffa07a),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,7 +29,7 @@ class CrearNotaScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _contenidoController,
               decoration: InputDecoration(
@@ -41,7 +41,7 @@ class CrearNotaScreen extends StatelessWidget {
               maxLines: 8,
               minLines: 5,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Llamar a la función onSave con un objeto Nota
@@ -54,10 +54,10 @@ class CrearNotaScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color.fromARGB(255, 242, 239, 237),
-                backgroundColor: Color(0xffffa07a),
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                backgroundColor: const Color(0xffffa07a),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),
-              child: Text('Guardar Nota'),
+              child: const Text('Guardar Nota'),
             ),
           ],
         ),

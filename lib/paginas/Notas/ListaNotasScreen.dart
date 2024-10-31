@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Notas/nota.dart';
 
 class ListaNotasScreen extends StatefulWidget {
+  const ListaNotasScreen({super.key});
+
   @override
   _ListaNotasScreenState createState() => _ListaNotasScreenState();
 }
@@ -14,8 +16,8 @@ class _ListaNotasScreenState extends State<ListaNotasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mis Notas'),
-        backgroundColor: Color(0xffffa07a),
+        title: const Text('Mis Notas'),
+        backgroundColor: const Color(0xffffa07a),
       ),
       body: ListView.builder(
         itemCount: notas.length,
@@ -31,21 +33,21 @@ class _ListaNotasScreenState extends State<ListaNotasScreen> {
                 ),
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     notas[index].titulo,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Text(
                     notas[index].contenido,
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
@@ -66,9 +68,9 @@ class _ListaNotasScreenState extends State<ListaNotasScreen> {
                     })),
           );
         },
-        child: Icon(Icons.add),
         tooltip: 'Agregar Nota',
-     backgroundColor: Color(0xffffa07a),
+     backgroundColor: const Color(0xffffa07a),
+        child: Icon(Icons.add),
       ),
     );
   }

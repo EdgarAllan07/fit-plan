@@ -3,27 +3,32 @@ import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
+import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
+  const Login({super.key});
+
   @override
   Widget build(BuildContext context) {
+    const Color primaryColor = Color(0xFFFFA07A);
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFA07A),
+        backgroundColor: primaryColor,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('Iniciar Sesion', style: TextStyle(color: Colors.white)),
+        title: const Text('Iniciar Sesion', style: TextStyle(color: Colors.white)),
         elevation: 0,
       ),
       body: Container(
-        color: Color.fromARGB(255, 255, 255, 255),
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
+        color: Colors.white,
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
           child: Column(
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -31,12 +36,10 @@ class Login extends StatelessWidget {
                   hintText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -44,102 +47,45 @@ class Login extends StatelessWidget {
                   hintText: 'Contraseña',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0)),
                   ),
                 ),
                 obscureText: true,
               ),
-              SizedBox(height: 300),
+              const Spacer(),
               ElevatedButton(
-                child:
-                    Text('Entrar', style: TextStyle(color: Color(0xFFFFA07A))),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 onPressed: () {
-                  // Handle registration logic
+                  // Boton de iniciar sesion
                 },
+                child: const Text('Entrar', style: TextStyle(color: primaryColor)),
               ),
-              SizedBox(height: 24),
-              Text(
-                  overflow: TextOverflow.ellipsis, 'Todavia no tienes cuenta?'),
-              SizedBox(height: 12),
-              ElevatedButton(
-                child: Text('Registrarse',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ), // cod que nos enviara a la interface de registro
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Registro())); // registro, nombre de interface de registro :/
-                },
-              ), // este boton para prueba que llega a la pantalla de crear una nota
-              ElevatedButton(
-                child: Text('crear nota',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              ListaNotasScreen())); // Handle registration logic
-                },
-              ),
-              ElevatedButton(
-                child: Text('Calendario',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Calendario())); // Handle registration logic
-                },
-              ), 
-              ElevatedButton(
-                child: Text('Cronometro',
-                    style: TextStyle(color: Color(0xFFFFA07A))),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Cronometro())); // Handle registration logic
-                },
-              )//fin del boton de prueba
+              const SizedBox(height: 24),
+              const Text('¿Todavía no tienes cuenta?', style: TextStyle(color: Colors.black54)),
+              const SizedBox(height: 12),
+              _buildNavigationButton(context, 'Registrarse', () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Registro()));
+              }),
             ],
           ),
         ),
       ),
+    );
+  }
+  ElevatedButton _buildNavigationButton(BuildContext context, String label, VoidCallback onPressed) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(double.infinity, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      onPressed: onPressed,
+      child: Text(label, style: const TextStyle(color: Color(0xFFFFA07A))),
     );
   }
 }

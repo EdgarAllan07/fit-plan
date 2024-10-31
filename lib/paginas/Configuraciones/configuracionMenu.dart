@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ConfiguracionMenu extends StatelessWidget {
+  const ConfiguracionMenu({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configuraciones'),
-        backgroundColor: Color(0xFFFFA07A),
+        title: const Text('Configuraciones'),
+        backgroundColor: const Color(0xFFFFA07A),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: ListView(
-        children: [
+        children: const [
           ListTile(
             leading: Icon(Icons.brush),
             title: Text('Apariencia'),
@@ -48,7 +50,7 @@ class ConfiguracionMenu extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.fitness_center), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.restaurant_menu), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
