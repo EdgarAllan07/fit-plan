@@ -4,7 +4,7 @@ import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:fit_plan_proyecto/paginas/login.dart';
 import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:flutter/material.dart';
-import 'paginas/Notas/CrearNotaScreen.dart';
+import 'paginas/login.dart';
 import 'paginas/menu.dart';
 import 'package:firebase_auth/firebase_auth.dart'; //cadena para metodos de autentificacion
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Registro(),
+      home: const Menu(),
     );
   }
 }

@@ -1,6 +1,4 @@
-import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
 import 'package:fit_plan_proyecto/paginas/registro.dart';
-import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:flutter/material.dart';

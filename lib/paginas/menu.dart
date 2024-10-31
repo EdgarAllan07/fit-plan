@@ -1,5 +1,5 @@
 import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
-import 'package:fit_plan_proyecto/paginas/registro.dart';
+import 'package:fit_plan_proyecto/paginas/login.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
@@ -17,7 +17,7 @@ class Menu extends StatelessWidget {
       backgroundColor: const Color(0xFFFFA07A), // Light Salmon color
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
+        elevation: 100.0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
