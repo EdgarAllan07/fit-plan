@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
  //clases para validar la autentificacion
  //clase registro y iniciar
+ 
 class Autentificacion{
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
