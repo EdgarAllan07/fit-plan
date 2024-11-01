@@ -1,5 +1,5 @@
 import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
-import 'package:fit_plan_proyecto/paginas/login.dart';
+import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
@@ -19,7 +19,9 @@ class Menu extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 100.0,
         leading: IconButton(
+
           icon: const Icon(Icons.arrow_back, color: Colors.white),
+
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -55,7 +57,7 @@ class Menu extends StatelessWidget {
       {'icon': Icons.lightbulb_outline, 'label': 'Tips', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.scale, 'label': 'Peso', 'page': ResultadoPeso()}, // Añadir la página correspondiente
       {'icon': Icons.description_outlined, 'label': 'Plan de entrenamiento...', 'page': null}, // Añadir la página correspondiente
-      {'icon': Icons.timer, 'label': 'Cronometro', 'page': Cronometro()},
+      {'icon': Icons.timer, 'label': 'Cronometro', 'page': const Cronometro()},
       {'icon': Icons.restaurant_menu, 'label': 'Comidas', 'page': null}, // Añadir la página correspondiente
       {'icon': Icons.calendar_today, 'label': 'Horarios', 'page': Calendario()},
       {'icon': Icons.settings, 'label': 'Configuraciones', 'page': ConfiguracionMenu()},

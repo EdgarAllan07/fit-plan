@@ -8,9 +8,11 @@ import 'paginas/login.dart';
 import 'paginas/menu.dart';
 import 'package:firebase_auth/firebase_auth.dart'; //cadena para metodos de autentificacion
 
+
 void main() {
   runApp(const MyApp());
 } 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override

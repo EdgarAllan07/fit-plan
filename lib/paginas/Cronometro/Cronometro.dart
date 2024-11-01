@@ -11,7 +11,9 @@ class Cronometro extends StatefulWidget {
   _CronometroPageState createState() => _CronometroPageState();
 }
 class _CronometroPageState extends State<Cronometro> {
+
   final int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
@@ -121,7 +123,9 @@ class _CronometroPageState extends State<Cronometro> {
                               Menu()));
         },
         ),
+
         backgroundColor: const Color(0xFFFFA07A), // Color de la barra superior
+
       ),
       body: 
       Center(
@@ -138,7 +142,9 @@ class _CronometroPageState extends State<Cronometro> {
                   height: 400,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
+
                     border: Border.all(color: const Color(0xFFFFA07A), width: 11),
+
                   ),
                 ),
                 // Texto del cronómetro
@@ -170,7 +176,9 @@ class _CronometroPageState extends State<Cronometro> {
                     size: 35,
                   ),
                 ),
+
                 const SizedBox(width: 10),
+
                 // Icono de Reiniciar
                 ElevatedButton(
                   onPressed: _resetStopwatch,
