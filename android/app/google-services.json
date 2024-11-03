@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "761053944110",
+    "project_id": "usuariosfitplan",
+    "storage_bucket": "usuariosfitplan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761053944110:android:1012054473d3a5848b82bf",
+        "android_client_info": {
+          "package_name": "com.example.fit_plan_proyecto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761053944110-om3fbsinijpra93ju5kqmltatirhpubl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR7DE7bNI8dMpkrI39KFl3BiZ7o_9emDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761053944110-om3fbsinijpra93ju5kqmltatirhpubl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "761053944110-d1f1atceba0bcjqf0p7j3eqgongf6v54.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fitPlanProyecto"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
