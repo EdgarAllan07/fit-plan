@@ -1,3 +1,4 @@
+import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -16,12 +17,12 @@ class _CronometroPageState extends State<Cronometro> {
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Menu()),
-        );
+        //Rutinas
+        print("Rutinas");
         break;
       case 1:
+      //COmidas
+      print("Comidas");
         break;
       case 2:
         Navigator.push(
@@ -30,15 +31,13 @@ class _CronometroPageState extends State<Cronometro> {
         );
         break;
       case 3:
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Calendario()),
-        );
+      //Es esta vista
+        print("Estas en Cronometro");
         break;
       case 4:
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Menu()),
+          MaterialPageRoute(builder: (context) => Calendario()),
         );
         break;
     }
@@ -103,9 +102,9 @@ class _CronometroPageState extends State<Cronometro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Cronometro',
+        centerTitle: false,
+        title:const Text(
+          'Cronómetro',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -113,16 +112,27 @@ class _CronometroPageState extends State<Cronometro> {
           ),
         ),
         leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.white),
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: (){
-          Navigator.push(
+          Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
                               Menu()));
         },
         ),
-        backgroundColor: Color(0xFFFFA07A), // Color de la barra superior
+        backgroundColor:const  Color(0xFFFFA07A), 
+        actions: [
+            IconButton( color: Colors.white,
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ConfiguracionMenu()),
+                  );
+                },
+                icon: Icon(Icons.settings))
+          ],// Color de la barra superior
       ),
       body: 
       Center(
@@ -224,15 +234,11 @@ class _CronometroPageState extends State<Cronometro> {
         backgroundColor: Color(0xFFFFA07A),
         padding: EdgeInsets.all(25),
         tabs: const [
-          GButton(
-            icon: Icons.run_circle,
-            text: 'Rutinas',
-            gap: 8,
-          ),
+          GButton(icon: Icons.run_circle,text: 'Rutinas',gap: 8,),
           GButton(icon: Icons.restaurant, text: 'Comidas', gap: 8),
           GButton(icon: Icons.home, text: 'Inicio', gap: 8),
-          GButton(icon: Icons.calendar_month, text: 'Horarios', gap: 8),
-          GButton(icon: Icons.menu, text: 'Menu', gap: 8),
+          GButton(icon: Icons.timer, text: 'Cronómetro', gap: 8),
+          GButton(icon: Icons.calendar_today, text: 'Calendario', gap: 8),
         ],
         onTabChange: _onItemTapped, // Usa la función para manejar el cambio de tab
       ),

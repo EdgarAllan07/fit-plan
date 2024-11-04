@@ -1,19 +1,41 @@
+import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
+import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
+import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
-class ConfiguracionMenu extends StatelessWidget {
+class ConfiguracionMenu extends StatefulWidget {
+  const ConfiguracionMenu({super.key});
+
+  @override
+  State<ConfiguracionMenu> createState() => _ConfiguracionMenuState();
+}
+
+class _ConfiguracionMenuState extends State<ConfiguracionMenu> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configuraciones'),
-        backgroundColor: Color(0xFFFFA07A),
+        centerTitle: false,
+        title: const Text('Configuraciones',style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
+        backgroundColor: const Color(0xFFFFA07A),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Menu(),
+              ),
+            );
+          },
         ),
       ),
       body: ListView(
-        children: [
+        children: const [
           ListTile(
             leading: Icon(Icons.brush),
             title: Text('Apariencia'),
@@ -46,16 +68,53 @@ class ConfiguracionMenu extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.fitness_center), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.restaurant_menu), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+      bottomNavigationBar: GNav(
+        color: Colors.white,
+        activeColor: Colors.white,
+        backgroundColor: const Color(0xFFFFA07A),
+        padding: const EdgeInsets.all(25),
+        tabs: const [
+          GButton(icon: Icons.run_circle, text: 'Rutinas', gap: 8),
+          GButton(icon: Icons.restaurant, text: 'Comidas', gap: 8),
+          GButton(icon: Icons.home, text: 'Inicio', gap: 8),
+          GButton(icon: Icons.timer, text: 'Cronómetro', gap: 8),
+          GButton(icon: Icons.calendar_today, text: 'Calendario', gap: 8)
         ],
+        onTabChange: _onItemTapped,
       ),
     );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        //  Rutinas
+        print("Rutinas");
+        break;
+      case 1:
+        // Comidas
+        print("Comidas");
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Menu()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Cronometro()),
+        );
+      case 4:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Calendario()),
+        );
+    }
   }
 }
