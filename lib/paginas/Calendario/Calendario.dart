@@ -13,7 +13,6 @@ class Calendario extends StatefulWidget {
 class _CalendarioState extends State<Calendario> {
   int _selectedIndex = 0;
 
-  // Variables para el calendario
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
@@ -34,11 +33,9 @@ class _CalendarioState extends State<Calendario> {
 
     switch (index) {
       case 0:
-        //  Rutinas
         print("Rutinas");
         break;
       case 1:
-        //Comidas
         print("Comidas");
         break;
       case 2:
@@ -48,7 +45,7 @@ class _CalendarioState extends State<Calendario> {
         );
         break;
       case 3:
-      Navigator.push(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Cronometro()),
         );
@@ -66,8 +63,8 @@ class _CalendarioState extends State<Calendario> {
       bottomNavigationBar: GNav(
         color: Colors.white,
         activeColor: Colors.white,
-        backgroundColor: Color(0xFFFFA07A),
-        padding: EdgeInsets.all(25),
+        backgroundColor: const Color(0xFFFFA07A),
+        padding: const EdgeInsets.all(25),
         tabs: const [
           GButton(icon: Icons.run_circle, text: 'Rutinas', gap: 8),
           GButton(icon: Icons.restaurant, text: 'Comidas', gap: 8),
@@ -76,6 +73,16 @@ class _CalendarioState extends State<Calendario> {
           GButton(icon: Icons.calendar_today, text: 'Calendario', gap: 8),
         ],
         onTabChange: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (_selectedDay != null) {
+            _showAddNoteDialog(_selectedDay!);
+          }
+        },
+        backgroundColor: const Color(0xFFFFA07A),
+        child: Icon(Icons.add, color: Colors.white),
+        tooltip: 'Agregar nota',
       ),
     );
   }
@@ -99,12 +106,13 @@ class _CalendarioState extends State<Calendario> {
           ),
           backgroundColor: const Color(0xFFFFA07A),
           actions: [
-            IconButton( color: Colors.white,
+            IconButton(
+                color: Colors.white,
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ConfiguracionMenu()),
+                        builder: (context) => const ConfiguracionMenu()),
                   );
                 },
                 icon: const Icon(Icons.settings))
@@ -132,11 +140,55 @@ class _CalendarioState extends State<Calendario> {
                   formatButtonVisible: false,
                   titleCentered: true,
                 ),
-                daysOfWeekStyle: const DaysOfWeekStyle(
-                  weekendStyle:
-                      TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-                  weekdayStyle: TextStyle(
+                daysOfWeekStyle: DaysOfWeekStyle(
+                  weekendStyle: const TextStyle(
+                      color: Colors.red, fontWeight: FontWeight.bold),
+                  weekdayStyle: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
+                  dowTextFormatter: (date, locale) {
+                    return date.weekday == 7
+                        ? 'D'
+                        : date.weekday == 6
+                            ? 'S'
+                            : 'LMMJVS'[date.weekday - 1].toUpperCase();
+                  },
+                ),
+                calendarBuilders: CalendarBuilders(
+                  defaultBuilder: (context, day, focusedDay) {
+                    if (_events[day] != null && _events[day]!.isNotEmpty) {
+                      return Container(
+                        margin: const EdgeInsets.all(4.0),
+                        decoration: const BoxDecoration(
+                          color: Colors
+                              .blueAccent, // Morado claro para días con notas
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '${day.day}',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      );
+                    }
+                    return null;
+                  },
+                  selectedBuilder: (context, day, focusedDay) {
+                    return Container(
+                      margin: const EdgeInsets.all(4.0),
+                      decoration: const BoxDecoration(
+                        color:
+                            Colors.redAccent, // Color para el día seleccionado
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${day.day}',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(
@@ -157,22 +209,119 @@ class _CalendarioState extends State<Calendario> {
                     ? ListView.builder(
                         itemCount: _getEventsForDay(_selectedDay!).length,
                         itemBuilder: (context, index) {
+                          final note = _getEventsForDay(_selectedDay!)[index];
                           return ListTile(
                             title: Text(
-                              _getEventsForDay(_selectedDay!)[index],
+                              note,
                               style: const TextStyle(
                                   fontSize: 25, fontWeight: FontWeight.bold),
                             ),
+                            onTap: () => _showEditDeleteDialog(
+                                _selectedDay!, index, note),
                           );
                         },
                       )
-                    : Center(
-                      child: Text('Selecciona una fecha para ver notas')),
+                    : const Center(
+                        child: Text('Selecciona una fecha para ver notas')),
               ),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  void _showAddNoteDialog(DateTime dateTime) {
+    String newNote = '';
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Agregar nota'),
+          content: TextField(
+            onChanged: (value) {
+              newNote = value;
+            },
+            decoration: const InputDecoration(hintText: 'Escribe tu nota'),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  if (_events[dateTime] != null) {
+                    _events[dateTime]!.add(newNote);
+                  } else {
+                    _events[dateTime] = [newNote];
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Agregar',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEditDeleteDialog(DateTime date, int index, String note) {
+    String updatedNote = note;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Editar/Eliminar nota'),
+          content: TextField(
+            controller: TextEditingController(text: note),
+            onChanged: (value) {
+              updatedNote = value;
+            },
+            decoration: const InputDecoration(hintText: 'Editar tu nota'),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  if (updatedNote.isNotEmpty) {
+                    _events[date]![index] = updatedNote;
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Guardar',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _events[date]!.removeAt(index);
+                  if (_events[date]!.isEmpty) {
+                    _events.remove(date);
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child:
+                  const Text('Eliminar', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
     );
   }
 }
