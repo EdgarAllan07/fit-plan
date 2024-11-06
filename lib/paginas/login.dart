@@ -4,8 +4,9 @@ import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:fit_plan_proyecto/utils/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
-import 'package:fit_plan_proyecto/utils/toast_msj.dart'; 
+import 'package:fit_plan_proyecto/utils/toast_msj.dart';
 import 'menu.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Login extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -43,7 +44,8 @@ class Login extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(
-                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0),
+                        width: 16.0,
+                        color: const Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
                   ),
@@ -64,7 +66,8 @@ class Login extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(
-                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0),
+                        width: 16.0,
+                        color: const Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
                   ),
@@ -76,9 +79,10 @@ class Login extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 300),
+                SizedBox(height: 20),
                 ElevatedButton(
-                  child: Text('Entrar', style: TextStyle(color: Color(0xFFFFA07A))),
+                  child: Text('Entrar',
+                      style: TextStyle(color: Color(0xFFFFA07A))),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
@@ -86,32 +90,54 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   onPressed: () async {
-                    // Manejo de la lógica de inicio de sesión
                     if (_formKey.currentState?.validate() == true) {
                       String correo = _emailController.text;
                       String pass = _passwordController.text;
 
                       var resultado = await _auth.iniciarSesion(correo, pass);
                       if (resultado == 1) {
-                        ToastUtils.mostrarMensajeError('El correo y la contraseña son incorrectos');
+                        ToastUtils.mostrarMensajeError(
+                            'El correo y la contraseña son incorrectos');
                       } else if (resultado == 2) {
-                        ToastUtils.mostrarMensajeError("El correo y la contraseña son incorrectos");
+                        ToastUtils.mostrarMensajeError(
+                            "El correo y la contraseña son incorrectos");
                       } else if (resultado != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Menu())
-                        );
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Menu()));
                       }
                     } else {
                       print('Formulario inválido');
                     }
                   },
                 ),
+                SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: SignInButton(
+                    Buttons.Google,
+                    onPressed: () async {
+                      try {
+                        var userCredential =
+                            await _auth.iniciarSesionConGoogle();
+                        if (userCredential.user != null) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Menu()));
+                        }
+                      } catch (e) {
+                        ToastUtils.mostrarMensajeError(
+                            'Error al iniciar sesión con Google');
+                        print('Error de inicio de sesión con Google: $e');
+                      }
+                    },
+                  ),
+                ),
                 SizedBox(height: 24),
-                Text('Todavía no tienes cuenta?', overflow: TextOverflow.ellipsis),
+                Text('Todavía no tienes cuenta?',
+                    overflow: TextOverflow.ellipsis),
                 SizedBox(height: 12),
                 ElevatedButton(
-                  child: Text('Registrarse', style: TextStyle(color: Color(0xFFFFA07A))),
+                  child: Text('Registrarse',
+                      style: TextStyle(color: Color(0xFFFFA07A))),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
@@ -119,10 +145,8 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Registro())
-                    );
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Registro()));
                   },
                 ),
               ],

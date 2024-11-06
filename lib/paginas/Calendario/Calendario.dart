@@ -80,23 +80,27 @@ class _CalendarioState extends State<Calendario> {
             'nota': note,
           });
         } else {
-          _events[dateKey] = [{
-            'id': docRef.id,
-            'nota': note,
-          }];
+          _events[dateKey] = [
+            {
+              'id': docRef.id,
+              'nota': note,
+            }
+          ];
         }
       });
     }
   }
 
-  Future<void> _updateNote(DateTime date, String noteId, String updatedNote) async {
+  Future<void> _updateNote(
+      DateTime date, String noteId, String updatedNote) async {
     await _firestore.collection('NotasCalendario').doc(noteId).update({
       'nota': updatedNote,
     });
 
     final dateKey = DateTime.utc(date.year, date.month, date.day);
     setState(() {
-      final noteIndex = _events[dateKey]!.indexWhere((note) => note['id'] == noteId);
+      final noteIndex =
+          _events[dateKey]!.indexWhere((note) => note['id'] == noteId);
       if (noteIndex != -1) {
         _events[dateKey]![noteIndex]['nota'] = updatedNote;
       }
@@ -296,15 +300,16 @@ class _CalendarioState extends State<Calendario> {
                     ? ListView.builder(
                         itemCount: _getEventsForDay(_selectedDay!).length,
                         itemBuilder: (context, index) {
-                          final noteData = _getEventsForDay(_selectedDay!)[index];
+                          final noteData =
+                              _getEventsForDay(_selectedDay!)[index];
                           return ListTile(
                             title: Text(
                               noteData['nota'],
                               style: const TextStyle(
                                   fontSize: 25, fontWeight: FontWeight.bold),
                             ),
-                            onTap: () => _showEditDeleteDialog(
-                                _selectedDay!, noteData['id'], noteData['nota']),
+                            onTap: () => _showEditDeleteDialog(_selectedDay!,
+                                noteData['id'], noteData['nota']),
                           );
                         },
                       )
