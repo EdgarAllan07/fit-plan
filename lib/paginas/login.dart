@@ -16,24 +16,26 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFA07A),
+        backgroundColor: const Color(0xFFFFA07A),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('Iniciar Sesion', style: TextStyle(color: Colors.white)),
+        title: const Text('Iniciar Sesion', style: TextStyle(color: Colors.white)),
         elevation: 0,
       ),
-      body: Container(
-        color: Color.fromARGB(255, 255, 255, 255),
+      body: SingleChildScrollView(
+      child: Container(
+        color: const Color.fromARGB(255, 255, 255, 255),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding:const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -42,8 +44,8 @@ class Login extends StatelessWidget {
                     hintText: 'Email',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0),
+                      borderSide:const  BorderSide(
+                        width: 16.0, color:  Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
                   ),
@@ -54,7 +56,7 @@ class Login extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -63,8 +65,8 @@ class Login extends StatelessWidget {
                     hintText: 'Contraseña',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        width: 16.0, color: const Color.fromARGB(255, 0, 0, 0),
+                      borderSide: const BorderSide(
+                        width: 16.0, color:  Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
                   ),
@@ -76,11 +78,11 @@ class Login extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 300),
+                const SizedBox(height: 300),
                 ElevatedButton(
                   child: Text('Entrar', style: TextStyle(color: Color(0xFFFFA07A))),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
+                    minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -107,13 +109,13 @@ class Login extends StatelessWidget {
                     }
                   },
                 ),
-                SizedBox(height: 24),
-                Text('Todavía no tienes cuenta?', overflow: TextOverflow.ellipsis),
-                SizedBox(height: 12),
+                const SizedBox(height: 24),
+                const Text('Todavía no tienes cuenta?', overflow: TextOverflow.ellipsis),
+                const SizedBox(height: 12),
                 ElevatedButton(
                   child: Text('Registrarse', style: TextStyle(color: Color(0xFFFFA07A))),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
+                    minimumSize:const  Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -129,6 +131,7 @@ class Login extends StatelessWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }
