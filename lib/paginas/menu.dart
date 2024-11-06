@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'Configuraciones/configuracionMenu.dart';
 import 'calcularPeso/resultadoPeso.dart';
+import 'package:fit_plan_proyecto/paginas/login.dart';
 
 class Menu extends StatelessWidget {
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,40 +52,15 @@ class Menu extends StatelessWidget {
 
   Widget _buildMenuGrid(BuildContext context) {
     final menuItems = [
-      {
-        'icon': Icons.lightbulb_outline,
-        'label': 'Tips',
-        'page': null
-      }, // Añadir la página correspondiente
-      {
-        'icon': Icons.scale,
-        'label': 'Peso',
-        'page': ResultadoPeso()
-      }, // Añadir la página correspondiente
-      {
-        'icon': Icons.description_outlined,
-        'label': 'Plan de entrenamiento...',
-        'page': null
-      }, // Añadir la página correspondiente
+      {'icon': Icons.lightbulb_outline, 'label': 'Tips', 'page': null}, // Añadir la página correspondiente
+      {'icon': Icons.scale, 'label': 'Peso', 'page': ResultadoPeso()},
+      {'icon': Icons.description_outlined, 'label': 'Plan de entrenamiento...', 'page': null},
       {'icon': Icons.timer, 'label': 'Cronometro', 'page': Cronometro()},
-      {
-        'icon': Icons.restaurant_menu,
-        'label': 'Comidas',
-        'page': null
-      }, // Añadir la página correspondiente
+      {'icon': Icons.restaurant_menu, 'label': 'Comidas', 'page': null},
       {'icon': Icons.calendar_today, 'label': 'Horarios', 'page': Calendario()},
-      {
-        'icon': Icons.settings,
-        'label': 'Configuraciones',
-        'page': ConfiguracionMenu()
-      },
+      {'icon': Icons.settings, 'label': 'Configuraciones', 'page': ConfiguracionMenu()},
       {'icon': Icons.note, 'label': 'Notas', 'page': ListaNotasScreen()},
-      {
-        'icon': Icons.exit_to_app,
-        'label': 'Cerrar sesión',
-        'page': null,
-        'logout': true
-      } // Añadir la página correspondiente
+      {'icon': Icons.exit_to_app, 'label': 'Cerrar sesión', 'logout': true} // Logout item
     ];
 
     return GridView.builder(
@@ -97,9 +74,13 @@ class Menu extends StatelessWidget {
       itemCount: menuItems.length,
       itemBuilder: (context, index) {
         final item = menuItems[index];
-        return _buildMenuItem(context, item['icon'] as IconData,
-            item['label'] as String, item['page'] as Widget?,
-            logout: item['logout'] as bool? ?? false);
+        return _buildMenuItem(
+          context,
+          item['icon'] as IconData,
+          item['label'] as String,
+          item['page'] as Widget?,
+          logout: item['logout'] as bool? ?? false,
+        );
       },
     );
   }
@@ -110,7 +91,34 @@ class Menu extends StatelessWidget {
     return InkWell(
       onTap: () async {
         if (logout) {
-          await _auth.logOut(context); // Llama al método de cerrar sesión
+          // Mostrar un cuadro de diálogo de confirmación antes de cerrar sesión
+          final confirmLogout = await showDialog<bool>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Confirmar cierre de sesión'),
+                content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('Cancelar'),
+                    onPressed: () {
+                      Navigator.of(context).pop(false); // Cancelar
+                    },
+                  ),
+                  TextButton(
+                    child: const Text('Cerrar sesión'),
+                    onPressed: () {
+                      Navigator.of(context).pop(true); // Confirmar
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+
+          if (confirmLogout == true) {
+            await _auth.logOut(context); // Llama al método de cerrar sesión
+          }
         } else if (page != null) {
           Navigator.push(
             context,
