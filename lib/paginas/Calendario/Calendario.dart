@@ -4,6 +4,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Calendario extends StatefulWidget {
   @override
@@ -12,18 +14,105 @@ class Calendario extends StatefulWidget {
 
 class _CalendarioState extends State<Calendario> {
   int _selectedIndex = 0;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+  Map<DateTime, List<Map<String, dynamic>>> _events = {};
 
-  final Map<DateTime, List<String>> _events = {
-    DateTime.utc(2023, 9, 15): ['Reunión de trabajo', 'Entrega de proyecto'],
-    DateTime.utc(2023, 9, 17): ['Cena familiar', 'Presentación en la escuela'],
-  };
+  @override
+  void initState() {
+    super.initState();
+    _loadEvents();
+  }
 
-  List<String> _getEventsForDay(DateTime day) {
-    return _events[day] ?? [];
+  Future<void> _loadEvents() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      final snapshot = await _firestore
+          .collection('NotasCalendario')
+          .where('userId', isEqualTo: user.uid)
+          .get();
+
+      Map<DateTime, List<Map<String, dynamic>>> newEvents = {};
+
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        final date = (data['fecha'] as Timestamp).toDate();
+        final dateKey = DateTime.utc(date.year, date.month, date.day);
+
+        if (newEvents[dateKey] == null) {
+          newEvents[dateKey] = [];
+        }
+        newEvents[dateKey]!.add({
+          'id': doc.id,
+          'nota': data['nota'],
+        });
+      }
+
+      setState(() {
+        _events = newEvents;
+      });
+    }
+  }
+
+  List<Map<String, dynamic>> _getEventsForDay(DateTime day) {
+    final dateKey = DateTime.utc(day.year, day.month, day.day);
+    return _events[dateKey] ?? [];
+  }
+
+  Future<void> _addNote(DateTime date, String note) async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      final docRef = await _firestore.collection('NotasCalendario').add({
+        'userId': user.uid,
+        'fecha': Timestamp.fromDate(date),
+        'nota': note,
+      });
+
+      final dateKey = DateTime.utc(date.year, date.month, date.day);
+      setState(() {
+        if (_events[dateKey] != null) {
+          _events[dateKey]!.add({
+            'id': docRef.id,
+            'nota': note,
+          });
+        } else {
+          _events[dateKey] = [{
+            'id': docRef.id,
+            'nota': note,
+          }];
+        }
+      });
+    }
+  }
+
+  Future<void> _updateNote(DateTime date, String noteId, String updatedNote) async {
+    await _firestore.collection('NotasCalendario').doc(noteId).update({
+      'nota': updatedNote,
+    });
+
+    final dateKey = DateTime.utc(date.year, date.month, date.day);
+    setState(() {
+      final noteIndex = _events[dateKey]!.indexWhere((note) => note['id'] == noteId);
+      if (noteIndex != -1) {
+        _events[dateKey]![noteIndex]['nota'] = updatedNote;
+      }
+    });
+  }
+
+  Future<void> _deleteNote(DateTime date, String noteId) async {
+    await _firestore.collection('NotasCalendario').doc(noteId).delete();
+
+    final dateKey = DateTime.utc(date.year, date.month, date.day);
+    setState(() {
+      _events[dateKey]!.removeWhere((note) => note['id'] == noteId);
+      if (_events[dateKey]!.isEmpty) {
+        _events.remove(dateKey);
+      }
+    });
   }
 
   void _onItemTapped(int index) {
@@ -135,7 +224,7 @@ class _CalendarioState extends State<Calendario> {
                     _focusedDay = focusedDay;
                   });
                 },
-                eventLoader: _getEventsForDay,
+                eventLoader: (day) => _getEventsForDay(day),
                 headerStyle: const HeaderStyle(
                   formatButtonVisible: false,
                   titleCentered: true,
@@ -155,12 +244,11 @@ class _CalendarioState extends State<Calendario> {
                 ),
                 calendarBuilders: CalendarBuilders(
                   defaultBuilder: (context, day, focusedDay) {
-                    if (_events[day] != null && _events[day]!.isNotEmpty) {
+                    if (_getEventsForDay(day).isNotEmpty) {
                       return Container(
                         margin: const EdgeInsets.all(4.0),
                         decoration: const BoxDecoration(
-                          color: Colors
-                              .blueAccent, // Morado claro para días con notas
+                          color: Colors.blueAccent,
                           shape: BoxShape.circle,
                         ),
                         child: Center(
@@ -177,8 +265,7 @@ class _CalendarioState extends State<Calendario> {
                     return Container(
                       margin: const EdgeInsets.all(4.0),
                       decoration: const BoxDecoration(
-                        color:
-                            Colors.redAccent, // Color para el día seleccionado
+                        color: Colors.redAccent,
                         shape: BoxShape.circle,
                       ),
                       child: Center(
@@ -209,15 +296,15 @@ class _CalendarioState extends State<Calendario> {
                     ? ListView.builder(
                         itemCount: _getEventsForDay(_selectedDay!).length,
                         itemBuilder: (context, index) {
-                          final note = _getEventsForDay(_selectedDay!)[index];
+                          final noteData = _getEventsForDay(_selectedDay!)[index];
                           return ListTile(
                             title: Text(
-                              note,
+                              noteData['nota'],
                               style: const TextStyle(
                                   fontSize: 25, fontWeight: FontWeight.bold),
                             ),
                             onTap: () => _showEditDeleteDialog(
-                                _selectedDay!, index, note),
+                                _selectedDay!, noteData['id'], noteData['nota']),
                           );
                         },
                       )
@@ -253,15 +340,11 @@ class _CalendarioState extends State<Calendario> {
               child: const Text('Cancelar'),
             ),
             TextButton(
-              onPressed: () {
-                setState(() {
-                  if (_events[dateTime] != null) {
-                    _events[dateTime]!.add(newNote);
-                  } else {
-                    _events[dateTime] = [newNote];
-                  }
-                });
-                Navigator.of(context).pop();
+              onPressed: () async {
+                if (newNote.isNotEmpty) {
+                  await _addNote(dateTime, newNote);
+                  Navigator.of(context).pop();
+                }
               },
               child: const Text('Agregar',
                   style: TextStyle(fontWeight: FontWeight.bold)),
@@ -272,7 +355,7 @@ class _CalendarioState extends State<Calendario> {
     );
   }
 
-  void _showEditDeleteDialog(DateTime date, int index, String note) {
+  void _showEditDeleteDialog(DateTime date, String noteId, String note) {
     String updatedNote = note;
 
     showDialog(
@@ -295,25 +378,18 @@ class _CalendarioState extends State<Calendario> {
               child: const Text('Cancelar'),
             ),
             TextButton(
-              onPressed: () {
-                setState(() {
-                  if (updatedNote.isNotEmpty) {
-                    _events[date]![index] = updatedNote;
-                  }
-                });
-                Navigator.of(context).pop();
+              onPressed: () async {
+                if (updatedNote.isNotEmpty) {
+                  await _updateNote(date, noteId, updatedNote);
+                  Navigator.of(context).pop();
+                }
               },
               child: const Text('Guardar',
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             TextButton(
-              onPressed: () {
-                setState(() {
-                  _events[date]!.removeAt(index);
-                  if (_events[date]!.isEmpty) {
-                    _events.remove(date);
-                  }
-                });
+              onPressed: () async {
+                await _deleteNote(date, noteId);
                 Navigator.of(context).pop();
               },
               child:
