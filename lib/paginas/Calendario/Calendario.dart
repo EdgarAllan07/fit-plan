@@ -68,7 +68,7 @@ class _CalendarioState extends State<Calendario> {
     if (user != null) {
       final docRef = await _firestore.collection('NotasCalendario').add({
         'userId': user.uid,
-        'fecha': Timestamp.fromDate(date),
+        'fecha': Timestamp.fromDate(DateTime(date.year, date.month, date.day)),
         'nota': note,
       });
 
