@@ -1,3 +1,4 @@
+import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
 import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
 import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
@@ -14,19 +15,19 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFA07A), // Light Salmon color
+      backgroundColor: const Color(0xFFFFA07A), // Light Salmon color
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: Column(
         children: [
           _buildUserProfile(),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(child: _buildMenuGrid(context)),
         ],
       ),
@@ -34,7 +35,7 @@ class Menu extends StatelessWidget {
   }
 
   Widget _buildUserProfile() {
-    return ListTile(
+    return const ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.white,
         child: Icon(Icons.person, color: Color(0xFFFFA07A)),
@@ -52,20 +53,40 @@ class Menu extends StatelessWidget {
 
   Widget _buildMenuGrid(BuildContext context) {
     final menuItems = [
-      {'icon': Icons.lightbulb_outline, 'label': 'Tips', 'page': null}, // Añadir la página correspondiente
+      {
+        'icon': Icons.lightbulb_outline,
+        'label': 'Tips',
+        'page': null
+      }, // Añadir la página correspondiente
       {'icon': Icons.scale, 'label': 'Peso', 'page': ResultadoPeso()},
-      {'icon': Icons.description_outlined, 'label': 'Plan de entrenamiento...', 'page': null},
+      {
+        'icon': Icons.description_outlined,
+        'label': 'Plan de entrenamiento...',
+        'page': null
+      },
       {'icon': Icons.timer, 'label': 'Cronometro', 'page': Cronometro()},
-      {'icon': Icons.restaurant_menu, 'label': 'Comidas', 'page': null},
+      {
+        'icon': Icons.restaurant_menu,
+        'label': 'Alimentación',
+        'page': const Alimentacion()
+      },
       {'icon': Icons.calendar_today, 'label': 'Horarios', 'page': Calendario()},
-      {'icon': Icons.settings, 'label': 'Configuraciones', 'page': ConfiguracionMenu()},
+      {
+        'icon': Icons.settings,
+        'label': 'Configuraciones',
+        'page': const ConfiguracionMenu()
+      },
       {'icon': Icons.note, 'label': 'Notas', 'page': ListaNotasScreen()},
-      {'icon': Icons.exit_to_app, 'label': 'Cerrar sesión', 'logout': true} // Logout item
+      {
+        'icon': Icons.exit_to_app,
+        'label': 'Cerrar sesión',
+        'logout': true
+      } // Logout item
     ];
 
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 1,
         crossAxisSpacing: 16,
@@ -97,7 +118,8 @@ class Menu extends StatelessWidget {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: const Text('Confirmar cierre de sesión'),
-                content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
+                content:
+                    const Text('¿Estás seguro de que quieres cerrar sesión?'),
                 actions: <Widget>[
                   TextButton(
                     child: const Text('Cancelar'),
@@ -130,18 +152,18 @@ class Menu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, size: 30, color: Color(0xFFFFA07A)),
+            child: Icon(icon, size: 30, color: const Color(0xFFFFA07A)),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             label,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 12),
+            style: const TextStyle(color: Colors.white, fontSize: 12),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
