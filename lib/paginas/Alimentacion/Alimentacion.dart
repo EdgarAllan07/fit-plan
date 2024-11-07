@@ -47,28 +47,30 @@ class _AlimentacionState extends State<Alimentacion> {
         ],
       ),
       body: Container(
-        padding:const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
+            const Divider(height: 25.0),
             ListTile(
-              leading: Image.asset('assets/images/logo.png'),
-              title:const Text('Historial de Comidas'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Menu()),
-                );
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
+              leading: Image.asset(
+                'assets/images/platosSugeridos.png',
+                width: 100,
+                height: 100,
               ),
-              tileColor: Colors.grey[100],
-              contentPadding:const EdgeInsets.all(12.0),
-            ),
-            const Divider (height: 25.0),
-            ListTile(
-              leading:const  Icon(Icons.food_bank),
-              title: const Text('Plan del día'),
+              title: const Text(
+                'Platos Sugeridos',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: const Text(
+    '¿Qué, No sabes qué comer hoy?',
+    style: TextStyle(
+      fontSize: 14, // Ajusta el tamaño a tu preferencia
+      color: Colors.grey, // Puedes cambiar el color si deseas
+    ),
+  ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -83,15 +85,25 @@ class _AlimentacionState extends State<Alimentacion> {
             ),
             const Divider(height: 25.0),
             ListTile(
-              leading: Image.asset('assets/images/recetas.png',
-              width: 100,
-              height: 100,
+              leading: Image.asset(
+                'assets/images/recetasSaludables.jpg',
+                width: 100,
+                height: 100,
               ),
-              title: const Text('Recetas',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),),
+              title: const Text(
+                'Recetas Saludables',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: const Text(
+    'Balancea tu dieta',
+    style: TextStyle(
+      fontSize: 14, // Ajusta el tamaño a tu preferencia
+      color: Colors.grey, // Puedes cambiar el color si deseas
+    ),
+  ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -102,12 +114,29 @@ class _AlimentacionState extends State<Alimentacion> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               tileColor: Colors.grey[100],
-              contentPadding:const EdgeInsets.all(12.0),
+              contentPadding: const EdgeInsets.all(12.0),
             ),
             const Divider(height: 25.0),
             ListTile(
-              leading:const Icon(Icons.shopping_basket),
-              title: const Text('Lista de Compras'),
+              leading: Image.asset(
+                'assets/images/agregarComida.png',
+                width: 100,
+                height: 100,
+              ),
+              title: const Text(
+                'Agregar mis comidas',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: const Text(
+                'Registra las comidas hoy!',
+                style: TextStyle(
+                  fontSize: 14, // Ajusta el tamaño a tu preferencia
+                  color: Colors.grey, // Puedes cambiar el color si deseas
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -118,7 +147,106 @@ class _AlimentacionState extends State<Alimentacion> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               tileColor: Colors.grey[100],
-              contentPadding:const EdgeInsets.all(12.0),
+              contentPadding: const EdgeInsets.all(12.0),
+            ),
+            const Divider(height: 25.0),
+            ListTile(
+              leading: Image.asset(
+                'assets/images/consejosNutricionales.png',
+                width: 100,
+                height: 100,
+              ),
+              title: const Text(
+                'Consejos Nutricionales',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: const Text(
+    'Conoce un poco de nutrición',
+    style: TextStyle(
+      fontSize: 14, // Ajusta el tamaño a tu preferencia
+      color: Colors.grey, // Puedes cambiar el color si deseas
+    ),
+  ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Menu()),
+                );
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              tileColor: Colors.grey[100],
+              contentPadding: const EdgeInsets.all(12.0),
+            ),
+            const Divider(height: 25.0),
+            ListTile(
+              leading: Image.asset(
+                'assets/images/consejosHidratacion.jpg',
+                width: 100,
+                height: 100,
+              ),
+              title: const Text(
+                'Consejos de Hidratación',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: const Text(
+    'Mejora tu hidratación',
+    style: TextStyle(
+      fontSize: 14, // Ajusta el tamaño a tu preferencia
+      color: Colors.grey, // Puedes cambiar el color si deseas
+    ),
+  ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Menu()),
+                );
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              tileColor: Colors.grey[100],
+              contentPadding: const EdgeInsets.all(12.0),
+            ),
+            const Divider(height: 25.0),
+            ListTile(
+              leading: Image.asset(
+                'assets/images/historialComidas.png',
+                width: 100,
+                height: 100,
+              ),
+              title: const Text(
+                'Historial Comidas',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: const Text(
+                'Se mostrará el historial de las comidas agregadas',
+                style: TextStyle(
+                  fontSize: 14, // Ajusta el tamaño a tu preferencia
+                  color: Colors.grey, // Puedes cambiar el color si deseas
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Menu()),
+                );
+              },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              tileColor: Colors.grey[100],
+              contentPadding: const EdgeInsets.all(12.0),
             ),
           ],
         ),

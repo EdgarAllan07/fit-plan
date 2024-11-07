@@ -64,7 +64,7 @@ class Menu extends StatelessWidget {
         'label': 'Plan de entrenamiento...',
         'page': null
       },
-      {'icon': Icons.timer, 'label': 'Cronometro', 'page': Cronometro()},
+      {'icon': Icons.timer, 'label': 'Cronómetro', 'page': Cronometro()},
       {
         'icon': Icons.restaurant_menu,
         'label': 'Alimentación',
