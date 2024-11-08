@@ -48,7 +48,7 @@ class _CrearNotaScreenState extends State<CrearNotaScreen> {
               "Nota guardada con éxito",
               style: TextStyle(color: Colors.white), // Color del texto
             ),
-            backgroundColor: Color(0xffffa07a), // Color de fondo del SnackBar
+            backgroundColor: Colors.green, // Color de fondo del SnackBar
           ),
         );
 
@@ -79,8 +79,17 @@ class _CrearNotaScreenState extends State<CrearNotaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crear Nueva Nota'),
-        backgroundColor: const Color(0xffffa07a),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: (){Navigator.pop(context);},
+        ),
+        centerTitle: false,
+        title: const Text(
+          'Crear Nota',
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+        ),
+        backgroundColor: const Color(0xFFFFA07A), // Color pastel naranja
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -114,7 +123,7 @@ class _CrearNotaScreenState extends State<CrearNotaScreen> {
                   : _guardarNota, // Desactivar el botón si está guardando
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color.fromARGB(255, 242, 239, 237),
-                backgroundColor: const Color(0xffffa07a),
+                backgroundColor: Colors.blueAccent,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),
