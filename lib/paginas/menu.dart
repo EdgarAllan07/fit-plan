@@ -1,4 +1,5 @@
 import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
+import 'package:fit_plan_proyecto/paginas/Consejos/Consejos.dart';
 import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
 import 'package:fit_plan_proyecto/paginas/registro.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
@@ -56,9 +57,9 @@ class Menu extends StatelessWidget {
       {
         'icon': Icons.lightbulb_outline,
         'label': 'Tips',
-        'page': null
+        'page': const Consejos()
       }, // Añadir la página correspondiente
-      {'icon': Icons.scale, 'label': 'Peso', 'page': ResultadoPeso()},
+      {'icon': Icons.scale, 'label': 'Peso', 'page': const ResultadoPeso()},
       {
         'icon': Icons.description_outlined,
         'label': 'Plan de entrenamiento...',
