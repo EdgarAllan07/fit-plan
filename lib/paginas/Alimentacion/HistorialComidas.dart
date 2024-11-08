@@ -42,10 +42,15 @@ class HistorialComidas extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Historial de Comidas'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: (){Navigator.pop(context);},
+        ),
+        title: const Text('Historial de Comidas', style: TextStyle(color: Colors.white),),
+        backgroundColor: const Color(0xFFFFA07A),
         actions: [
           IconButton(
-            icon: const Icon(Icons.delete_forever),
+            icon: const Icon(Icons.delete_forever, color: Colors.white,),
             onPressed: () {
               showDialog(
                 context: context,
@@ -65,9 +70,9 @@ class HistorialComidas extends StatelessWidget {
                           const SnackBar(content: Text('Historial eliminado')),
                         );
                       },
-                      child: const Text('Eliminar'),
+                      child: const Text('Eliminar', style: TextStyle(color: Colors.white),),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: Colors.redAccent,
                       ),
                     ),
                   ],
@@ -144,6 +149,7 @@ class HistorialComidas extends StatelessWidget {
                 final comidasDelDia = comidasPorFecha[fecha]!;
 
                 return Card(
+                  color: Colors.grey[100],
                   margin: const EdgeInsets.all(8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,7 +168,7 @@ class HistorialComidas extends StatelessWidget {
                         final data = doc.data() as Map<String, dynamic>;
                         return ListTile(
                           leading: Icon(_getIconForMeal(data['tipoComida'] ?? '')),
-                          title: Text(data['tipoComida'] ?? 'Tipo no especificado'),
+                          title: Text(data['tipoComida'] ?? 'Tipo no especificado', style:const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                           subtitle: Text(data['descripcion'] ?? 'Sin descripción'),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),

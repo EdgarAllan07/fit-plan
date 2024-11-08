@@ -1,4 +1,6 @@
 import 'package:fit_plan_proyecto/paginas/Alimentacion/AgregarComidas.dart';
+import 'package:fit_plan_proyecto/paginas/Alimentacion/ConsejosHidratacion.dart';
+import 'package:fit_plan_proyecto/paginas/Alimentacion/ConsejosNutricionales.dart';
 import 'package:fit_plan_proyecto/paginas/Alimentacion/HistorialComidas.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
@@ -30,8 +32,7 @@ class _AlimentacionState extends State<Alimentacion> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Menu()));
+            Navigator.pop(context);
           },
         ),
         backgroundColor: const Color(0xFFFFA07A),
@@ -67,12 +68,12 @@ class _AlimentacionState extends State<Alimentacion> {
                 ),
               ),
               subtitle: const Text(
-    '¿Qué, No sabes qué comer hoy?',
-    style: TextStyle(
-      fontSize: 14, // Ajusta el tamaño a tu preferencia
-      color: Colors.grey, // Puedes cambiar el color si deseas
-    ),
-  ),
+                '¿Qué, No sabes qué comer hoy?',
+                style: TextStyle(
+                  fontSize: 14, // Ajusta el tamaño a tu preferencia
+                  color: Colors.grey, // Puedes cambiar el color si deseas
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -100,12 +101,12 @@ class _AlimentacionState extends State<Alimentacion> {
                 ),
               ),
               subtitle: const Text(
-    'Balancea tu dieta',
-    style: TextStyle(
-      fontSize: 14, // Ajusta el tamaño a tu preferencia
-      color: Colors.grey, // Puedes cambiar el color si deseas
-    ),
-  ),
+                'Balancea tu dieta',
+                style: TextStyle(
+                  fontSize: 14, // Ajusta el tamaño a tu preferencia
+                  color: Colors.grey, // Puedes cambiar el color si deseas
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -166,16 +167,16 @@ class _AlimentacionState extends State<Alimentacion> {
                 ),
               ),
               subtitle: const Text(
-    'Conoce un poco de nutrición',
-    style: TextStyle(
-      fontSize: 14, // Ajusta el tamaño a tu preferencia
-      color: Colors.grey, // Puedes cambiar el color si deseas
-    ),
-  ),
+                'Conoce un poco de nutrición',
+                style: TextStyle(
+                  fontSize: 14, // Ajusta el tamaño a tu preferencia
+                  color: Colors.grey, // Puedes cambiar el color si deseas
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Menu()),
+                  MaterialPageRoute(builder: (context) =>const ConsejosNutricionales()),
                 );
               },
               shape: RoundedRectangleBorder(
@@ -199,16 +200,17 @@ class _AlimentacionState extends State<Alimentacion> {
                 ),
               ),
               subtitle: const Text(
-    'Mejora tu hidratación',
-    style: TextStyle(
-      fontSize: 14, // Ajusta el tamaño a tu preferencia
-      color: Colors.grey, // Puedes cambiar el color si deseas
-    ),
-  ),
+                'Mejora tu hidratación',
+                style: TextStyle(
+                  fontSize: 14, // Ajusta el tamaño a tu preferencia
+                  color: Colors.grey, // Puedes cambiar el color si deseas
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Menu()),
+                  MaterialPageRoute(
+                      builder: (context) => const ConsejosHidratacion()),
                 );
               },
               shape: RoundedRectangleBorder(
@@ -250,6 +252,7 @@ class _AlimentacionState extends State<Alimentacion> {
               tileColor: Colors.grey[100],
               contentPadding: const EdgeInsets.all(12.0),
             ),
+            const Divider(height: 25.0),
           ],
         ),
       ),
