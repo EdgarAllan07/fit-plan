@@ -2,6 +2,7 @@ import 'package:fit_plan_proyecto/paginas/Alimentacion/AgregarComidas.dart';
 import 'package:fit_plan_proyecto/paginas/Alimentacion/ConsejosHidratacion.dart';
 import 'package:fit_plan_proyecto/paginas/Alimentacion/ConsejosNutricionales.dart';
 import 'package:fit_plan_proyecto/paginas/Alimentacion/HistorialComidas.dart';
+import 'package:fit_plan_proyecto/paginas/Alimentacion/RecetasSaludables.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
@@ -110,7 +111,7 @@ class _AlimentacionState extends State<Alimentacion> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Menu()),
+                  MaterialPageRoute(builder: (context) =>const RecetasSaludables()),
                 );
               },
               shape: RoundedRectangleBorder(
