@@ -9,7 +9,9 @@ class ConsejosNutricionales extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: (){Navigator.pop(context);},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         centerTitle: false,
         title: const Text(
@@ -44,6 +46,129 @@ class ConsejosNutricionales extends StatelessWidget {
             title: 'Incluye más verduras verdes',
             description:
                 'Verduras como espinaca y brócoli son ricas en nutrientes esenciales.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn5.jpg',
+            title: 'Modera el azúcar',
+            description:
+                'Evita el azúcar añadido para mejorar tus niveles de energía.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn6.jpg',
+            title: 'Bebe suficiente agua',
+            description:
+                'Mantente hidratado para que tu metabolismo funcione correctamente.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn7.jpg',
+            title: 'Elige alimentos integrales',
+            description:
+                'Opta por alimentos no procesados para obtener más nutrientes.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn8.jpg',
+            title: 'Incluye fibra en tu dieta',
+            description:
+                'La fibra mejora la digestión y ayuda a sentir saciedad.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn9.jpg',
+            title: 'Varía tus fuentes de proteínas',
+            description:
+                'Combina proteínas animales y vegetales para una dieta equilibrada.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn10.jpg',
+            title: 'Come despacio',
+            description:
+                'Comer lentamente ayuda a la digestión y evita comer en exceso.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn11.png',
+            title: 'Evita las bebidas azucaradas',
+            description:
+                'Las bebidas azucaradas pueden añadir calorías vacías.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn12.jpg',
+            title: 'Incluye probióticos',
+            description:
+                'Yogur y kéfir son ricos en probióticos, buenos para la salud intestinal.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn13.jpg',
+            title: 'Cocina más en casa',
+            description:
+                'Cocinar en casa permite controlar los ingredientes y la calidad de la comida.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn14.jpg',
+            title: 'Modera el consumo de sal',
+            description: 'Reducir el sodio es bueno para la presión arterial.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn15.jpg',
+            title: 'Incluye antioxidantes',
+            description:
+                'Alimentos como arándanos y té verde ayudan a combatir el estrés oxidativo.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn16.jpg',
+            title: 'Come frutos secos con moderación',
+            description: 'Son ricos en nutrientes, pero también en calorías.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn17.jpg',
+            title: 'Sigue un horario de comidas',
+            description:
+                'Comer a intervalos regulares ayuda a mantener estables los niveles de azúcar.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn18.jpg',
+            title: 'Presta atención a las porciones',
+            description:
+                'Comer porciones adecuadas puede ayudarte a controlar el peso.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn19.jpg',
+            title: 'Incluye frutas en cada comida',
+            description: 'Las frutas aportan vitaminas y antioxidantes.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn20.jpg',
+            title: 'Modera el consumo de carne roja',
+            description:
+                'La carne roja en exceso puede elevar el colesterol; inclúyela ocasionalmente.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn21.jpg',
+            title: 'Evita los alimentos fritos',
+            description:
+                'Los alimentos fritos tienen grasas trans; mejor hornea o asa.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn22.jpg',
+            title: 'Consume pescado regularmente',
+            description:
+                'El pescado es una buena fuente de omega-3 para el cerebro y el corazón.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn23.jpg',
+            title: 'Evita las dietas restrictivas',
+            description:
+                'Las dietas extremas pueden llevar a deficiencias nutricionales.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn24.jpg',
+            title: 'Lee las etiquetas nutricionales',
+            description:
+                'Las etiquetas te ayudan a entender los ingredientes y el contenido calórico.',
+          ),
+          ConsejosNutricionalesTile(
+            imageAsset: 'assets/ConsejosNutricionales/cn25.jpg',
+            title: 'Consulta a un profesional',
+            description:
+                'Un nutricionista puede ayudarte a personalizar una dieta saludable.',
           ),
         ],
       ),
