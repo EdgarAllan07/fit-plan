@@ -7,9 +7,47 @@ import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'Configuraciones/configuracionMenu.dart';
 import 'calcularPeso/resultadoPeso.dart';
 import 'package:fit_plan_proyecto/paginas/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> { // Corregido a Menu
   final AuthService _auth = AuthService();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  Map<String, dynamic>? _userData;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _cargarDatosUsuario();
+  }
+
+  Future<void> _cargarDatosUsuario() async {
+    final datos = await datosUsuario();
+    setState(() {
+      _userData = datos;
+    });
+  }
+
+  Future<Map<String, dynamic>?> datosUsuario() async {
+  final user = auth.currentUser;
+    final id = user?.uid;
+    if (user != null) {
+      final docSnapshot = await _firestore.collection('datosUsuario').doc(id).get();
+      if (docSnapshot.exists) {
+        return docSnapshot.data(); // Devuelve los datos si existen
+      } else {
+        print('No se encontraron datos para el usuario');
+        return null;
+      }
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +72,14 @@ class Menu extends StatelessWidget {
   }
 
   Widget _buildUserProfile() {
+    // Verifica si _userData es null antes de acceder a sus datos
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.white,
         child: Icon(Icons.person, color: Color(0xFFFFA07A)),
       ),
       title: Text(
-        'Usuario',
+        _userData?['nickname'] ?? 'Cargando...', // Verifica si _userData es null
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       subtitle: Text(

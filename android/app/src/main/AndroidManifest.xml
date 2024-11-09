@@ -2,7 +2,8 @@
     <application
         android:label="Fit Plan"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/logo"
+        android:roundIcon="@mipmap/logo">
         <activity
             android:name=".MainActivity"
             android:exported="true"

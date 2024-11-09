@@ -15,14 +15,30 @@ dependencies:
   firebase_auth: ^5.3.1
   fluttertoast: ^8.2.8
   cloud_firestore: ^5.4.4
-  google_sign_in: ^5.2.1 
+  google_sign_in: ^5.2.1
   flutter_signin_button: ^2.0.0
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#FFA07A" # Cambia por el color de fondo de tu splash screen.
+  image: assets/images/logo.png # Ruta de tu imagen.
+  android: true
+  ios: true
+  fullscreen: true
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/logo.png

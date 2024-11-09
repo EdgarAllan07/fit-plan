@@ -20,141 +20,181 @@ class Login extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFA07A),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text('Iniciar Sesion', style: TextStyle(color: Colors.white)),
+        title:
+            const Text('Iniciar Sesion', textAlign: TextAlign.center, style: TextStyle(color: Colors.white,   fontWeight: FontWeight.bold,
+                          fontSize: 28,)),
         elevation: 0,
       ),
       body: SingleChildScrollView(
-      child: Container(
-        color: const Color.fromARGB(255, 255, 255, 255),
-        child: Padding(
-          padding:const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        width: 16.0,
-                        color: const Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ),
+        child: Container(
+          width: double.infinity, // Ensures the container takes the full width
+          color: const Color(0xFFFFA07A),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment
+                    .stretch, // Align items to fill horizontally
+                children: [
+                  // Imagen agregada arriba del formulario
+                  Image.asset(
+                    'assets/images/logo.png', // Asegúrate de que la imagen exista en esta ruta
+                    height:
+                        300, // Ajusta el tamaño de la imagen según sea necesario
+                    width: 300,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese un email';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Contraseña',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: const BorderSide(
-                        width: 16.0, color:  Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ),
-                  ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese una contraseña';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('Entrar',
-                      style: TextStyle(color: Color(0xFFFFA07A))),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () async {
-                    if (_formKey.currentState?.validate() == true) {
-                      String correo = _emailController.text;
-                      String pass = _passwordController.text;
 
-                      var resultado = await _auth.iniciarSesion(correo, pass);
-                      if (resultado == 1) {
-                        ToastUtils.mostrarMensajeError(
-                            'El correo y la contraseña son incorrectos');
-                      } else if (resultado == 2) {
-                        ToastUtils.mostrarMensajeError(
-                            "El correo y la contraseña son incorrectos");
-                      } else if (resultado != null) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Menu()));
+                  const Text("Email",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white)),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Ej: example@mail.com',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          width: 1.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, ingrese un email';
                       }
-                    } else {
-                      print('Formulario inválido');
-                    }
-                  },
-                ),
-                SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: SignInButton(
-                    Buttons.Google,
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  const Text("Contraseña",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white)),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Ingresa tu contraseña para entrar a tu cuenta',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: const BorderSide(
+                          width: 1.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, ingrese una contraseña';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(color: Color(0xFFFFA07A)),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     onPressed: () async {
-                      try {
-                        var userCredential =
-                            await _auth.iniciarSesionConGoogle();
-                        if (userCredential.user != null) {
+                      if (_formKey.currentState?.validate() == true) {
+                        String correo = _emailController.text;
+                        String pass = _passwordController.text;
+
+                        var resultado = await _auth.iniciarSesion(correo, pass);
+                        if (resultado == 1 || resultado == 2) {
+                          ToastUtils.mostrarMensajeError(
+                              'El correo y la contraseña son incorrectos');
+                        } else if (resultado != null) {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Menu()));
                         }
-                      } catch (e) {
-                        ToastUtils.mostrarMensajeError(
-                            'Error al iniciar sesión con Google');
-                        print('Error de inicio de sesión con Google: $e');
+                      } else {
+                        print('Formulario inválido');
                       }
                     },
                   ),
-                ),
-                SizedBox(height: 24),
-                Text('Todavía no tienes cuenta?',
-                    overflow: TextOverflow.ellipsis),
-                SizedBox(height: 12),
-                ElevatedButton(
-                  child: Text('Registrarse',
-                      style: TextStyle(color: Color(0xFFFFA07A))),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:const  Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    child: SignInButton(
+                      Buttons.Google,
+                      onPressed: () async {
+                        try {
+                          // Show loading indicator
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+
+                          var userCredential =
+                              await _auth.iniciarSesionConGoogle();
+
+                          // Hide loading indicator
+                          Navigator.pop(context);
+
+                          if (userCredential.user != null) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Menu()));
+                          }
+                        } catch (e) {
+                          if (Navigator.canPop(context)) Navigator.pop(context);
+
+                          ToastUtils.mostrarMensajeError(
+                              'Error al iniciar sesión con Google: ${e.toString()}');
+                        }
+                      },
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Registro()));
-                  },
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  const Text('Todavía no tienes cuenta?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white)),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    child: const Text(
+                      'Registrarse',
+                      style: TextStyle(color: Color(0xFFFFA07A)),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Registro()));
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

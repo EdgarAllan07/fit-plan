@@ -78,40 +78,46 @@ class AuthService {
     );
   }
 
- Future<UserCredential> iniciarSesionConGoogle() async {
+Future<UserCredential> iniciarSesionConGoogle() async {
   try {
     // Revocar la sesión anterior
     await GoogleSignIn().signOut();
 
-// Inicia el flujo de autenticación
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    // Inicia el flujo de autenticación
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    
+    if (googleUser == null) throw Exception('Google Sign In was cancelled');
 
-      // Obtén los detalles de autenticación
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    // Obtén los detalles de autenticación
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-      // Crea la credencial de Google
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
+    // Crea la credencial de Google
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
 
-      // Inicia sesión en Firebase con la credencial de Google
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    // Inicia sesión en Firebase con la credencial
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    
+    // Verifica si el usuario ya existe en Firestore
+    final userDoc = await _firestore
+        .collection('datosUsuario')
+        .where('id', isEqualTo: userCredential.user?.uid)
+        .get();
 
-      // Verifica si el usuario ya existe en Firestore
-      final userDoc = await _firestore.collection('datosUsuario').doc(userCredential.user?.uid).get();
-      if (!userDoc.exists) {
-        // Si el usuario no existe, agrega un nuevo documento en Firestore
-        await _firestore.collection('datosUsuario').doc(userCredential.user?.uid).set({
-          'id': userCredential.user?.uid,
-          'correo': userCredential.user?.email,
-          'nickname': userCredential.user?.displayName ?? "",
-          'fechaNA': "",  // Puedes ajustar esto según los datos disponibles
-          'created_at': DateTime.now(),
-          'updated_at': DateTime.now(),
-        });
-      }
-      
+    if (userDoc.docs.isEmpty) {
+      // Si el usuario no existe, crear nuevo documento
+      await _firestore.collection('datosUsuario').doc(userCredential.user?.uid).set({
+        'id': userCredential.user?.uid,
+        'correo': userCredential.user?.email,
+        'nickname': userCredential.user?.displayName ?? '',
+        'fechaNA': '',
+        'created_at': DateTime.now(),
+        'updated_at': DateTime.now(),
+      });
+    }
+    
     return userCredential;
   } catch (e) {
     print("Error de autenticación con Google: $e");
@@ -122,9 +128,10 @@ class AuthService {
 
   Future datosUsuario() async {
     final user = auth.currentUser;
+    final id = user?.uid;
     if (user != null) {
       final docSnapshot =
-          await _firestore.collection('datosUsuario').doc(user.uid).get();
+          await _firestore.collection('datosUsuario').doc(id).get();
       if (docSnapshot.exists) {
         return docSnapshot.data(); // Devuelve los datos si existen
       } else {
