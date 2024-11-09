@@ -45,4 +45,5 @@ flutter:
     - assets/ConsejosHidratacion/
     - assets/ConsejosNutricionales/
     - assets/RecetasSaludables/
+    - assets/PlatosSugeridos/
     - assets/images/logo.png
