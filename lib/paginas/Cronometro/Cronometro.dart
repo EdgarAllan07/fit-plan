@@ -1,3 +1,4 @@
+import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
 import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,10 @@ class _CronometroPageState extends State<Cronometro> {
         print("Rutinas");
         break;
       case 1:
-      //COmidas
-      print("Comidas");
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>const Alimentacion()),
+        );
         break;
       case 2:
         Navigator.push(
@@ -114,11 +117,7 @@ class _CronometroPageState extends State<Cronometro> {
         leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: (){
-          Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Menu()));
+         Navigator.of(context).pop();
         },
         ),
         backgroundColor:const  Color(0xFFFFA07A), 
@@ -235,7 +234,7 @@ class _CronometroPageState extends State<Cronometro> {
         padding: EdgeInsets.all(25),
         tabs: const [
           GButton(icon: Icons.run_circle,text: 'Rutinas',gap: 8,),
-          GButton(icon: Icons.restaurant, text: 'Comidas', gap: 8),
+          GButton(icon: Icons.restaurant, text: 'Alimentación', gap: 8),
           GButton(icon: Icons.home, text: 'Inicio', gap: 8),
           GButton(icon: Icons.timer, text: 'Cronómetro', gap: 8),
           GButton(icon: Icons.calendar_today, text: 'Calendario', gap: 8),

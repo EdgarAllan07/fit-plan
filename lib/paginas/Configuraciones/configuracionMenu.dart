@@ -1,3 +1,4 @@
+import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
@@ -75,7 +76,7 @@ class _ConfiguracionMenuState extends State<ConfiguracionMenu> {
         padding: const EdgeInsets.all(25),
         tabs: const [
           GButton(icon: Icons.run_circle, text: 'Rutinas', gap: 8),
-          GButton(icon: Icons.restaurant, text: 'Comidas', gap: 8),
+          GButton(icon: Icons.restaurant, text: 'Alimentación', gap: 8),
           GButton(icon: Icons.home, text: 'Inicio', gap: 8),
           GButton(icon: Icons.timer, text: 'Cronómetro', gap: 8),
           GButton(icon: Icons.calendar_today, text: 'Calendario', gap: 8)
@@ -96,8 +97,10 @@ class _ConfiguracionMenuState extends State<ConfiguracionMenu> {
         print("Rutinas");
         break;
       case 1:
-        // Comidas
-        print("Comidas");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Alimentacion()),
+        );
         break;
       case 2:
         Navigator.push(

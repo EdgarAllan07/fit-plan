@@ -40,5 +40,9 @@ flutter_native_splash:
 
 flutter:
   uses-material-design: true
-  assets:
+  assets: 
+    - assets/images/
+    - assets/ConsejosHidratacion/
+    - assets/ConsejosNutricionales/
+    - assets/RecetasSaludables/
     - assets/images/logo.png

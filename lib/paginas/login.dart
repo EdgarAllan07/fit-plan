@@ -20,12 +20,16 @@ class Login extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFA07A),
-        title:
-            const Text('Iniciar Sesion', textAlign: TextAlign.center, style: TextStyle(color: Colors.white,   fontWeight: FontWeight.bold,
-                          fontSize: 28,)),
+        title: const Text('Iniciar Sesion',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 28,
+            )),
         elevation: 0,
       ),
-      body: SingleChildScrollView(
+      body: SizedBox(
         child: Container(
           width: double.infinity, // Ensures the container takes the full width
           color: const Color(0xFFFFA07A),
@@ -56,6 +60,10 @@ class Login extends StatelessWidget {
                       filled: true,
                       fillColor: Colors.white,
                       hintText: 'Ej: example@mail.com',
+                      hintStyle: TextStyle(
+                        color: Colors.grey
+                            .withOpacity(0.8), // Aplica opacidad aquí
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: const BorderSide(
@@ -83,6 +91,10 @@ class Login extends StatelessWidget {
                       filled: true,
                       fillColor: Colors.white,
                       hintText: 'Ingresa tu contraseña para entrar a tu cuenta',
+                      hintStyle: TextStyle(
+                        color: Colors.grey
+                            .withOpacity(0.8), // Aplica opacidad aquí
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: const BorderSide(

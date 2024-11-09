@@ -1,3 +1,4 @@
+import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
 import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -129,7 +130,10 @@ class _CalendarioState extends State<Calendario> {
         print("Rutinas");
         break;
       case 1:
-        print("Comidas");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Alimentacion()),
+        );
         break;
       case 2:
         Navigator.push(
