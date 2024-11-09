@@ -24,24 +24,58 @@ class Entrenamiento extends StatelessWidget {
               Navigator.pop(context);
             },
           )),
-      body: ListView.builder(
-        itemCount: levels.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(levels[index]),
-            trailing: Icon(Icons.arrow_forward),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      LevelDetailsScreen(level: levels[index]),
-                ),
-              );
-            },
-          );
-        },
-      ),
+      body: Padding(
+      padding: const EdgeInsets.all(16.0),
+        child:Column(
+        children: [
+          
+          const Text("Consejos importantes antes de iniciar ",textAlign: TextAlign.justify,
+              style: TextStyle(
+                  
+                  fontSize: 15,
+                  color: Colors.black,)),
+          const Text(
+              "Calentamiento: Antes de comenzar cada rutina, dedica 5-10 minutos a un calentamiento ligero (como trotar en el sitio, hacer estiramientos dinámicos o ejercicios de movilidad articular.",textAlign: TextAlign.justify,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.black)),
+          const Text(
+              "Escucha a tu cuerpo: No te exijas más de lo que puedes manejar, esto para evitar lesiones cuando estés comenzando..",textAlign: TextAlign.justify,
+              style: TextStyle(
+                  
+                  fontSize: 15,
+                  color: Colors.black)),
+          const Text(
+              "Descanso: No olvides la importancia de descansar. Si estás trabajando a niveles altos de intensidad, asegúrate de descansar adecuadamente entre los días de entrenamiento.",textAlign: TextAlign.justify,
+              style: TextStyle(
+                  
+                  fontSize: 15,
+                  color: Colors.black)),
+          Expanded(
+            child: ListView.builder(
+              itemCount: levels.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(levels[index]),
+                  trailing: Icon(Icons.arrow_forward),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            LevelDetailsScreen(level: levels[index]),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ), 
+      
+      )
     );
   }
 }
