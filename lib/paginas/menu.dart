@@ -12,6 +12,8 @@ import 'package:fit_plan_proyecto/paginas/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fit_plan_proyecto/paginas/Entrenamiento/Entrenamiento.dart';
+import 'package:fit_plan_proyecto/paginas/Tarifa/SuscripcionApp.dart';
+
 class Menu extends StatefulWidget {
   @override
   _MenuState createState() => _MenuState();
@@ -114,6 +116,11 @@ class _MenuState extends State<Menu> { // Corregido a Menu
         'page': const ConfiguracionMenu()
       },
       {'icon': Icons.note, 'label': 'Notas', 'page': ListaNotasScreen()},
+       {
+        'icon': Icons.money,
+        'label': 'Promocion Premium',
+        'page':  SuscripcionApp()
+      },
       {
         'icon': Icons.exit_to_app,
         'label': 'Cerrar sesión',
