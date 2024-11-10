@@ -1,11 +1,8 @@
-import 'package:fit_plan_proyecto/paginas/Notas/ListaNotasScreen.dart';
-import 'package:fit_plan_proyecto/paginas/registro.dart';
-import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
-import 'package:fit_plan_proyecto/utils/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
+import 'package:fit_plan_proyecto/utils/auth.dart';
 import 'package:fit_plan_proyecto/utils/toast_msj.dart';
-import 'menu.dart';
+import 'package:fit_plan_proyecto/paginas/registro.dart';
+import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Login extends StatelessWidget {
@@ -20,7 +17,7 @@ class Login extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFA07A),
-        title: const Text('Iniciar Sesion',
+        title: const Text('Iniciar Sesión',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -29,26 +26,25 @@ class Login extends StatelessWidget {
             )),
         elevation: 0,
       ),
-      body: SizedBox(
-        child: Container(
-          width: double.infinity, // Ensures the container takes the full width
-          color: const Color(0xFFFFA07A),
-          child: Padding(
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height,
+          ),
+          child: Container(
+            width: double.infinity,
+            color: const Color(0xFFFFA07A),
             padding: const EdgeInsets.all(16.0),
             child: Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment
-                    .stretch, // Align items to fill horizontally
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Imagen agregada arriba del formulario
                   Image.asset(
-                    'assets/images/logo.png', // Asegúrate de que la imagen exista en esta ruta
-                    height:
-                        300, // Ajusta el tamaño de la imagen según sea necesario
+                    'assets/images/logo.png',
+                    height: 300,
                     width: 300,
                   ),
-
                   const Text("Email",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -61,8 +57,7 @@ class Login extends StatelessWidget {
                       fillColor: Colors.white,
                       hintText: 'Ej: example@mail.com',
                       hintStyle: TextStyle(
-                        color: Colors.grey
-                            .withOpacity(0.8), // Aplica opacidad aquí
+                        color: Colors.grey.withOpacity(0.8),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -92,8 +87,7 @@ class Login extends StatelessWidget {
                       fillColor: Colors.white,
                       hintText: 'Ingresa tu contraseña para entrar a tu cuenta',
                       hintStyle: TextStyle(
-                        color: Colors.grey
-                            .withOpacity(0.8), // Aplica opacidad aquí
+                        color: Colors.grey.withOpacity(0.8),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -148,7 +142,6 @@ class Login extends StatelessWidget {
                       Buttons.Google,
                       onPressed: () async {
                         try {
-                          // Show loading indicator
                           showDialog(
                             context: context,
                             barrierDismissible: false,
@@ -160,7 +153,6 @@ class Login extends StatelessWidget {
                           var userCredential =
                               await _auth.iniciarSesionConGoogle();
 
-                          // Hide loading indicator
                           Navigator.pop(context);
 
                           if (userCredential.user != null) {

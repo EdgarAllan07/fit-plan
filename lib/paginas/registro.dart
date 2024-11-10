@@ -9,13 +9,11 @@ class Registro extends StatefulWidget {
 }
 
 class _RegistroState extends State<Registro> {
-  final _formKey =
-      GlobalKey<FormState>(); // Aquí se define el id del formulario
+  final _formKey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _repeatPasswordController =
-      TextEditingController();
+  final TextEditingController _repeatPasswordController = TextEditingController();
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _birthDateController = TextEditingController();
 
@@ -28,39 +26,47 @@ class _RegistroState extends State<Registro> {
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('Registro',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 28,
-            )),
+        title: Text(
+          'Registro',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 28,
+          ),
+        ),
         elevation: 0,
       ),
-      body: SizedBox(
-        child: Container(
-          color: const Color(0xFFFFA07A),
-          child: Padding(
+      body: Container(
+        color: const Color(0xFFFFA07A),
+        child: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: Padding(
               padding: EdgeInsets.all(10.0),
               child: Container(
                 padding: EdgeInsets.all(16.0),
-                color: new Color.fromRGBO(255, 255, 255, 0.2),
+                color: Color.fromRGBO(255, 255, 255, 0.2),
                 child: Form(
-                  key: _formKey, // Asigna el id del formulario aquí
+                  key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(height: 20),
                       TextFormField(
-                        controller: _emailController, // Asocia el controlador
+                        controller: _emailController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'Email',
+                          hintStyle: TextStyle(
+                        color: Colors.grey.withOpacity(0.8),
+                      ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(width: 1.0, color: Colors.black),
+                            borderSide: BorderSide(width: 1.0, color: Colors.black),
                           ),
                         ),
                         validator: (value) {
@@ -72,16 +78,17 @@ class _RegistroState extends State<Registro> {
                       ),
                       SizedBox(height: 30),
                       TextFormField(
-                        controller:
-                            _passwordController, // Asocia el controlador
+                        controller: _passwordController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'Contraseña',
+                          hintStyle: TextStyle(
+                        color: Colors.grey.withOpacity(0.8),
+                      ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(width: 1.0, color: Colors.black),
+                            borderSide: BorderSide(width: 1.0, color: Colors.black),
                           ),
                         ),
                         obscureText: true,
@@ -94,16 +101,17 @@ class _RegistroState extends State<Registro> {
                       ),
                       SizedBox(height: 30),
                       TextFormField(
-                        controller:
-                            _repeatPasswordController, // Asocia el controlador
+                        controller: _repeatPasswordController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'Repite la contraseña',
+                          hintStyle: TextStyle(
+                        color: Colors.grey.withOpacity(0.8),
+                      ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(width: 1.0, color: Colors.black),
+                            borderSide: BorderSide(width: 1.0, color: Colors.black),
                           ),
                         ),
                         obscureText: true,
@@ -119,16 +127,17 @@ class _RegistroState extends State<Registro> {
                       ),
                       SizedBox(height: 30),
                       TextFormField(
-                        controller:
-                            _nicknameController, // Asocia el controlador
+                        controller: _nicknameController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'Nickname',
+                          hintStyle: TextStyle(
+                        color: Colors.grey.withOpacity(0.8),
+                      ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(width: 1.0, color: Colors.black),
+                            borderSide: BorderSide(width: 1.0, color: Colors.black),
                           ),
                         ),
                         validator: (value) {
@@ -140,19 +149,20 @@ class _RegistroState extends State<Registro> {
                       ),
                       SizedBox(height: 30),
                       TextFormField(
-                        controller:
-                            _birthDateController, // Asocia el controlador
+                        controller: _birthDateController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: 'Fecha de Nacimiento',
+                          hintStyle: TextStyle(
+                        color: Colors.grey.withOpacity(0.8),
+                      ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(width: 1.0, color: Colors.black),
+                            borderSide: BorderSide(width: 1.0, color: Colors.black),
                           ),
                         ),
-                        readOnly: true, // Hace que el campo sea solo de lectura
+                        readOnly: true,
                         onTap: () async {
                           DateTime? pickedDate = await showDatePicker(
                             context: context,
@@ -162,8 +172,7 @@ class _RegistroState extends State<Registro> {
                           );
                           if (pickedDate != null) {
                             setState(() {
-                              _birthDateController.text =
-                                  "${pickedDate.toLocal()}".split(' ')[0];
+                              _birthDateController.text = "${pickedDate.toLocal()}".split(' ')[0];
                             });
                           }
                         },
@@ -174,10 +183,12 @@ class _RegistroState extends State<Registro> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 45), // Ajuste de espacio antes del botón
+                      SizedBox(height: 45),
                       ElevatedButton(
-                        child: Text('Registrarse',
-                            style: TextStyle(color: Color(0xFFFFA07A))),
+                        child: Text(
+                          'Registrarse',
+                          style: TextStyle(color: Color(0xFFFFA07A)),
+                        ),
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(double.infinity, 50),
                           shape: RoundedRectangleBorder(
@@ -186,21 +197,16 @@ class _RegistroState extends State<Registro> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState?.validate() == true) {
-                            // Obtén los valores de email, password, nickname y fecha
                             String correo = _emailController.text;
                             String pass = _passwordController.text;
                             String nickname = _nicknameController.text;
                             String fechaNA = _birthDateController.text;
 
-                            // Llama a la función createAccount
-                            var resultado = await _auth.createAccount(
-                                correo, pass, nickname, fechaNA);
+                            var resultado = await _auth.createAccount(correo, pass, nickname, fechaNA);
                             if (resultado == 1) {
-                              ToastUtils.mostrarMensajeError(
-                                  'La contraseña que intentas ingresar es muy débil');
+                              ToastUtils.mostrarMensajeError('La contraseña que intentas ingresar es muy débil');
                             } else if (resultado == 2) {
-                              ToastUtils.mostrarMensajeError(
-                                  "Ya existe una cuenta con ese correo electrónico");
+                              ToastUtils.mostrarMensajeError('Ya existe una cuenta con ese correo electrónico');
                             } else if (resultado != null) {
                               Navigator.push(
                                 context,
@@ -217,7 +223,9 @@ class _RegistroState extends State<Registro> {
                     ],
                   ),
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );
