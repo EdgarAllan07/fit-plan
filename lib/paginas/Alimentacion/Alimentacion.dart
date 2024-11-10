@@ -7,6 +7,7 @@ import 'package:fit_plan_proyecto/paginas/Alimentacion/RecetasSaludables.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
+import 'package:fit_plan_proyecto/paginas/Entrenamiento/Entrenamiento.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -282,7 +283,10 @@ class _AlimentacionState extends State<Alimentacion> {
 
     switch (index) {
       case 0:
-        print("Rutinas");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Entrenamiento()),
+        );
         break;
       case 1:
         print("Estas en Alimentacion");

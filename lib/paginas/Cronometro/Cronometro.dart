@@ -1,5 +1,6 @@
 import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
 import 'package:fit_plan_proyecto/paginas/Configuraciones/configuracionMenu.dart';
+import 'package:fit_plan_proyecto/paginas/Entrenamiento/Entrenamiento.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -18,8 +19,11 @@ class _CronometroPageState extends State<Cronometro> {
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        //Rutinas
-        print("Rutinas");
+        //Rutinas Entrenamiento
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Entrenamiento()),
+        );
         break;
       case 1:
       Navigator.push(

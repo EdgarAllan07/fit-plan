@@ -1,6 +1,7 @@
 import 'package:fit_plan_proyecto/paginas/Alimentacion/Alimentacion.dart';
 import 'package:fit_plan_proyecto/paginas/Calendario/Calendario.dart';
 import 'package:fit_plan_proyecto/paginas/Cronometro/Cronometro.dart';
+import 'package:fit_plan_proyecto/paginas/Entrenamiento/Entrenamiento.dart';
 import 'package:fit_plan_proyecto/paginas/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -93,8 +94,10 @@ class _ConfiguracionMenuState extends State<ConfiguracionMenu> {
 
     switch (index) {
       case 0:
-        //  Rutinas
-        print("Rutinas");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Entrenamiento()),
+        );
         break;
       case 1:
         Navigator.push(
